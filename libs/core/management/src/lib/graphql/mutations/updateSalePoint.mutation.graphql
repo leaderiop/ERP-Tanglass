@@ -1,0 +1,30 @@
+mutation UpdateSalePoint(
+  $id: uuid!
+  $address: String
+  $email: String
+  $fax: String
+  $name: String
+  $phone: String
+  $isPrincipale: Boolean = false
+) {
+  update_management_salesPoint_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      address: $address
+      email: $email
+      fax: $fax
+      id: $id
+      name: $name
+      phone: $phone
+      isPrincipale: $isPrincipale
+    }
+  ) {
+    address
+    email
+    fax
+    id
+    name
+    phone
+    isPrincipale
+  }
+}

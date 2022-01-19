@@ -1,0 +1,8 @@
+mutation updateService($id: uuid!, $labelFactory: String!, $name: String!) {
+  update_product_serviceConfig_by_pk(pk_columns: {id: $id}, _set: {labelFactory: $labelFactory, name: $name}) {
+    labelFactory
+    name
+    id
+    params
+  }
+}

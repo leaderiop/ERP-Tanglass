@@ -1,0 +1,125 @@
+query GetOrderById($id: Int!) {
+  sales_order_by_pk(id: $id) {
+    salepoint{
+      name
+    }
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+      phone
+      id
+    }
+    customer {
+      id
+      name
+      phone
+      code
+      ICE
+    }
+    date
+    deadline
+    draft_id
+    id
+    ref
+    ref_num
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+    draft {
+      status
+      product_drafts {
+        id
+        label
+        heigth
+        company_name
+        count
+        delivered
+        warehouse_id
+        substance_id
+        m2
+        ml
+        price
+        product_code
+        quantity
+        status
+        total_price
+        type
+        unit
+        width
+        isRepeated
+        isLaunched
+        draft_id
+        glass_draft {
+          id
+        }
+        consumable_draft {
+          dependent_id
+          labelFactory
+        }
+        service_draft {
+          dependent_id
+          labelFactory
+        }
+      }
+    }
+    payments {
+      amount
+      company {
+        name
+        id
+      }
+      date
+      deadline
+      paper_ref
+      payment_method
+      order_id
+      id
+      comment
+      customer {
+        name
+        id
+      }
+    }
+    deliveries {
+      id
+      ref
+      ref_num
+      amount_ht
+      amount_ttc
+      amount_tva
+      client {
+        code
+        name
+      }
+      company {
+        name
+      }
+      delivery_lines {
+        delivered
+        amount
+        product_draft {
+          id
+          product_code
+          label
+          quantity
+          total_price
+          type
+          width
+          unit
+          heigth
+          company_name
+          count
+        }
+      }
+      createdAt
+      payment_method
+      isReturned
+    }
+  }
+}

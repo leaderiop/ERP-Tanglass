@@ -1,0 +1,30 @@
+mutation updateProvider(
+  $id: uuid!
+  $FAX: String
+  $code: String
+  $mail: String
+  $name: String
+  $note: String
+  $phone: String
+  $website: String
+) {
+  update_contact_provider_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      FAX: $FAX
+      code: $code
+      mail: $mail
+      name: $name
+      note: $note
+      phone: $phone
+      website: $website
+    }
+  ) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}

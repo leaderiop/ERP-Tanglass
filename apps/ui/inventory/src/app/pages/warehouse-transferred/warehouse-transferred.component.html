@@ -1,0 +1,9 @@
+<ngx-main-grid [columnId]="columnId"
+               [withToolbar]="true"
+               [withCrud]="false"
+               [withDetails]="true"
+               (triggerEvent)="eventTriggering($event)"
+               [rowData]="data$"
+               [permissions]="permissions"
+               [columnDefs]="columnDefs">
+</ngx-main-grid>

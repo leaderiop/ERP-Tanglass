@@ -1,0 +1,33 @@
+query GetAllAccessoriesStock {
+  stock_warehouse_substance(where: {substance: {type: {_eq: accessory}}}) {
+    id
+    quantity
+    warehouse {
+      ...stock_warehouseFragment
+    }
+    substance {
+      productAccessory {
+        ...product_product_accessory_viewFragment
+      }
+      accessory {
+        category
+        id
+      }
+      id
+    }
+  }
+}
+
+
+
+
+
+fragment product_product_accessory_viewFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+
+
+

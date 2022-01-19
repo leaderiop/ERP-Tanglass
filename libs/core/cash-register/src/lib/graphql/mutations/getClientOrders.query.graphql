@@ -1,0 +1,28 @@
+query GetClientOrders($client: uuid) {
+  sales_order(where: {customer_id: {_eq: $client}}) {
+    company {
+      name
+      id
+    }
+    customer {
+      code
+      id
+      name
+      phone
+    }
+    delivery_status
+    payment_status
+    id
+    draft_id
+    ref
+    total_ht
+    total_tax
+    total_ttc
+    date
+    deadline
+    salepoint {
+      name
+    }
+    ref
+  }
+}

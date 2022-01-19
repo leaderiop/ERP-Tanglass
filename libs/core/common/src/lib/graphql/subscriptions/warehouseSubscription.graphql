@@ -1,0 +1,6 @@
+subscription WarehouseSubscription {
+  stock_warehouse {
+    id
+    name
+  }
+}

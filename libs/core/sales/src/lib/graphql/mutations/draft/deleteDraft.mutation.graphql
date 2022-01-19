@@ -1,0 +1,5 @@
+mutation deleteDrafts($ids: [Int!]! = []) {
+  delete_sales_draft(where: { id: { _in: $ids } }) {
+    affected_rows
+  }
+}

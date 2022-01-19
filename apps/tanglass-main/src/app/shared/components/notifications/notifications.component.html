@@ -1,0 +1,23 @@
+<div class="text-center mat-bg-primary pt-1 pb-1">
+  <h6 class="m-0">Notifications</h6>
+</div>
+<mat-nav-list class="notification-list" role="list" *ngIf="notifications$ | async; let notifications">
+  <!-- Notification item -->
+  <mat-list-item *ngFor="let n of notifications.reverse()" class="notific-item" role="listitem" routerLinkActive="open">
+    <mat-icon [color]="n.color" class="notific-icon mr-1">
+      {{n.icon}}
+    </mat-icon>
+    <a [routerLink]="[n.route || '/dashboard']">
+      <div class="mat-list-text">
+        <h4 class="font-weight-bold">{{n.title}}</h4>
+        <h5 class="">{{n.message}}</h5>
+        <small class="time text-muted ml-auto">{{n.time | date: 'mediumTime'}}</small>
+      </div>
+    </a>
+
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-nav-list>
+<div class="text-center mt-1"  *ngIf="(notifications$ | async)?.length">
+  <small><a href="#" (click)="clearAll($event)">Effacer toutes les notifications </a></small>
+</div>

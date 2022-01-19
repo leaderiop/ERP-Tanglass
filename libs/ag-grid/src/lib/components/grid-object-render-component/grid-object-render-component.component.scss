@@ -1,0 +1,11 @@
+a {
+  color: blue !important;
+  /* Change this with links color*/
+  cursor: pointer;
+  text-decoration: underline !important;
+}
+
+a:hover {
+  color: #444444;
+  /* Change the value to with anchors hover color*/
+}

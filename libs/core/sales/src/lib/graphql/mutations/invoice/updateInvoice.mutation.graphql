@@ -1,0 +1,46 @@
+mutation UpdateInvoice(
+  $id: uuid!
+  $client_id: uuid
+  $company_id: uuid
+  $contact_id: uuid
+  $date: date
+  $payment_method: String
+) {
+  update_sales_invoice_by_pk(
+    _set: {
+      client_id: $client_id
+      company_id: $company_id
+      contact_id: $contact_id
+      date: $date
+      payment_method: $payment_method
+    }
+    pk_columns: { id: $id }
+  ) {
+    id
+    client {
+      name
+      phone
+      mail
+    }
+    company {
+      id
+      name
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    date
+    payment_method
+    amount_ttc
+    amount_ht
+    amount_tva
+    deliveries {
+      delivery_id
+    }
+    ref
+    createdAt
+    updated_at
+  }
+}

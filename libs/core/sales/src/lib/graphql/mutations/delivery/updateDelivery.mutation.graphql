@@ -1,0 +1,40 @@
+mutation UpdateDelivery(
+  $id: uuid!
+  $payment_method: String!
+  $contact_id: uuid
+  $company_id: uuid
+  $client_id: uuid
+  $isReturned: Boolean
+  $predicted_date: date
+  $amount_ttc: numeric
+  $amount_tva: numeric
+  $amount_ht: numeric
+) {
+  update_sales_delivery_by_pk(
+    pk_columns: {id: $id}
+    _set: {
+      payment_method: $payment_method
+      contact_id: $contact_id
+      company_id: $company_id
+      client_id: $client_id
+      predicted_date: $predicted_date
+      isReturned: $isReturned
+      amount_ttc: $amount_ttc
+      amount_tva: $amount_tva
+      amount_ht: $amount_ht
+    }
+  ) {
+    id
+    order_id
+    status
+    company_id
+    payment_method
+    isReturned
+    predicted_date
+    client_id
+    contact_id
+    amount_ttc
+    amount_tva
+    amount_ht
+  }
+}

@@ -1,0 +1,27 @@
+<mat-toolbar style='background-color:transparent'>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <span>Nouveau Réception !</span>
+  <span class="example-spacer"></span>
+  <button mat-flat-button (click)="save()" color="primary" style="width : 8em;margin-right: 8px;">
+      CONFIRMER
+  </button>
+  <button mat-flat-button  (click)="cancel()" class=" mat-bg-warn" style="width : 8em;">
+      ANNULER
+  </button>
+</mat-toolbar>
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>
+            <span>Infos Générales</span>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <dynamic-form #delivery_form [fields]="regConfig" [withActions]=false>
+        </dynamic-form>
+    </mat-card-content>
+
+<ngx-delivery-items></ngx-delivery-items>
+</mat-card>

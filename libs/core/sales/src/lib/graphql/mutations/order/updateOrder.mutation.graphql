@@ -1,0 +1,44 @@
+mutation UpdateOrder(
+  $order_id: Int!
+  $total_ht: numeric
+  $total_tax: numeric
+  $total_ttc: numeric
+  $amounts: [sales_amount_insert_input!]!
+) {
+  update_sales_order_by_pk(
+    pk_columns: { id: $order_id }
+    _set: { total_ht: $total_ht, total_tax: $total_tax, total_ttc: $total_ttc }
+  ) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    salepoint {
+      name
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+  delete_sales_amount(where: { draft: { order: { id: { _eq: $order_id } } } }) {
+    affected_rows
+  }
+  insert_sales_amount(objects: $amounts) {
+    affected_rows
+  }
+}

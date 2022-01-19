@@ -1,0 +1,16 @@
+
+
+query GetAllUsers {
+  management_userProfile {
+    CIN
+    active
+    firstname
+    id
+    email
+    lastname
+    phone
+    username
+    SalesPointsid
+    role
+  }
+}

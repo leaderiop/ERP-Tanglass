@@ -1,0 +1,5 @@
+mutation InsertDraft( $status: sales_draft_status_enum = draft) {
+  insert_sales_draft_one(object: {status: $status}) {
+    id
+  }
+}

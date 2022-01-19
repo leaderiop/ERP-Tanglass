@@ -1,0 +1,36 @@
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 20px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.radio {
+  margin: 15px 15px;
+}
+
+.form {
+  padding: 20px;
+}
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.outerContainer {
+  padding: 25px;
+  // border: 1px solid #b6b6b6;
+  box-sizing: content-box;
+}
+
+.grid > div {
+  height: 250px;
+  //width: 600px;
+  //background-color: blue;
+}
+
+.alert {
+  width:90%;
+  background-color: #f4d8d3;
+
+}

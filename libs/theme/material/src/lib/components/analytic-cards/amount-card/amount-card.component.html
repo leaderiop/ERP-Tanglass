@@ -1,0 +1,41 @@
+<mat-card class="p-24" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-icon class="mat-color-{{ config.color }} text-48">{{
+      config.icon
+    }}</mat-icon>
+    <div class="ml-12">
+      <p class="m-0 mb-4">{{ config.title }}</p>
+      <h5
+        *ngIf="!config?.amount; else amount"
+        class="m-0 mat-color-{{ config.color }}"
+      >
+        {{ config.subtitle }}
+      </h5>
+      <ng-template #amount>
+        <h5 class="m-0 mat-color-{{ config.color }}">
+          <app-counter
+            [fontSize]="config?.amountFontSize || 78"
+            animationTime="1000"
+            [showCircle]="false"
+            [from]="0"
+            [to]="config.amount"
+            [of]="config.ofAmount || config.amount"
+            [finishedText]="config?.subtitle?config?.subtitle:''"
+          >
+            <ng-counter-prefix *ngIf="config?.amountPrefix">
+              {{ config.amountPrefix }} &nbsp;
+            </ng-counter-prefix>
+            <ng-counter-suffix *ngIf="config?.amountSuffix">
+              &nbsp;{{ config.amountSuffix }}
+            </ng-counter-suffix>
+          </app-counter>
+        </h5>
+      </ng-template>
+    </div>
+  </div>
+  <button mat-icon-button matTooltip="view more" [routerLink]="config.link">
+    <mat-icon *ngIf="config.withAction" class="mat-18"
+      >arrow_right_alt</mat-icon
+    >
+  </button>
+</mat-card>

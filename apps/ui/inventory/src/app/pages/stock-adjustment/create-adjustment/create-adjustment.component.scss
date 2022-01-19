@@ -1,0 +1,40 @@
+p {
+    font-family: Lato;
+  }
+  
+  .fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  .container {
+    padding: 10px;
+    margin:20px
+  }
+  .form{
+    padding: 80px;
+  }
+  .form-element {
+    padding: 5px 0px 25px 2px;
+    width: 100%;
+  }
+
+
+  .outerContainer {
+    padding: 25px;
+    // border: 1px solid #b6b6b6;
+    box-sizing: content-box;
+  }
+  
+ .textarea{
+  height: 350px !important;
+
+ }
+  
+  .grid > div{
+    height: 250px;
+    //width: 600px;
+    //background-color: blue;
+  }
+

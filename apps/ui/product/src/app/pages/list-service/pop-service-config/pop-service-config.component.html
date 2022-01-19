@@ -1,0 +1,34 @@
+<ngx-dialog-body [title]="title">
+  <dynamic-form [groups]="regConfig"
+                (close)="closePopup()"
+                (submit)="submit($event)"
+  >
+    <mat-accordion class="accordion-headers">
+      <button class="mx-20" mat-button color="accent" (click)="newParam()">
+        <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon> &nbsp;Ajouter
+      </button>
+      <mat-expansion-panel *ngFor="let param of params; index as i"
+                           class="example-headers-align mx-28"
+                           hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Paramètre
+          </mat-panel-title>
+          <mat-panel-description>
+            Paramètre {{i+1}}
+            <mat-icon color="primary" fontSet="fas" fontIcon="fa-cog">
+            </mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <dynamic-form name="param" [fields]="param"
+                      [withActions]="false">
+        </dynamic-form>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="deleteParam(param)">Supprimer</button>
+          <button mat-button color="primary" (click)="newParam()">Ajouter</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </dynamic-form>
+
+</ngx-dialog-body>

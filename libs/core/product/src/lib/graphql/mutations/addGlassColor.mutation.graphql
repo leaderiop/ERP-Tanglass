@@ -1,0 +1,6 @@
+
+mutation AddGlassColor($color: String) {
+  insert_product_glassColor_one(object: {color: $color}) {
+    color
+  }
+}

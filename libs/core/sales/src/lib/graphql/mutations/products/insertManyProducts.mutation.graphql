@@ -1,0 +1,47 @@
+mutation InsertManyProducts(
+  $objects: [sales_product_draft_insert_input!]!
+  $update_columns: [sales_product_draft_update_column!] = [
+    quantity
+    count
+    m2
+    ml
+    width
+    heigth
+    price
+  ]
+) {
+  insert_sales_product_draft(
+    objects: $objects
+    on_conflict: {
+      constraint: product_draft_pkey
+      update_columns: $update_columns
+    }
+  ) {
+    returning {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+      company_id
+      count
+      isRepeated
+      isLaunched
+      substance_id
+      warehouse_id
+      draft_id
+      glass_draft {
+        id
+      }
+    }
+    affected_rows
+  }
+}

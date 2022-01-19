@@ -1,0 +1,72 @@
+<form #f="ngForm">
+  <app-table
+    #table
+    [withCheckbox]="true"
+    [data]="deliveryLines"
+    [templates]="{
+      'product.delivered': product_delivered,
+      qte: qte,
+      rest: rest
+    }"
+    [columnsToShow]="displayedColumns"
+  >
+  </app-table>
+</form>
+
+<!--      Templates-->
+
+<ng-template let-item="data" #product_delivered>
+  <div class="text-success">{{ item }}</div>
+</ng-template>
+
+<ng-template let-item="data" #rest>
+  <div
+    [ngClass]="
+      item.product.quantity - item.product.delivered
+        ? 'text-danger'
+        : 'text-success'
+    "
+  >
+    {{ item.product.quantity - item.product.delivered }}
+  </div>
+</ng-template>
+
+<ng-template let-item="data" #qte>
+  <div #out [ngStyle]='{display: !data.length?"inline-block":"none"}'>
+    <output>
+      {{qteInput.value}}
+    </output>
+    <button mat-icon-button matSuffix (click)='switchViews(out, qteFormField);qteInput.focus()'>
+      <mat-icon color='accent' style='font-size: 1rem'>mode_edit</mat-icon>
+    </button>
+  </div>
+  <div #qteFormField [ngStyle]='{display: data.length?"inline-block":"none"}'>
+    <mat-form-field >
+      <input
+        #qteInput
+        matInput
+        type="number"
+        [(ngModel)]="item.delivered"
+        (focusout)='switchViews(qteFormField, out)'
+        (ngModelChange)="calculateAmount(item)"
+        name="delivered"
+        [min]="0"
+        [max]="item.product.quantity - item.product.delivered + item.toDeliver"
+      />
+      <button mat-icon-button matSuffix (click)="setMax(qteInput, item)">
+        <mat-icon style="font-size: 1.5rem">
+          {{ item.delivered == qteInput.max ? 'clear_all' : 'done_all' }}
+        </mat-icon>
+      </button>
+    </mat-form-field>
+
+  </div>
+
+</ng-template>
+
+<mat-divider></mat-divider>
+<div class="text-right m-12">
+  <span class="font-weight-bold">Montant Total: </span>
+  <span>{{ (deliveryAmount$ | async)?.amount_ttc }} {{CURRENCY}}</span>
+</div>
+<mat-divider></mat-divider>

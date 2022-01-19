@@ -1,0 +1,55 @@
+mutation InsertInvoice(
+  $client_id: uuid!
+  $contact_id: uuid
+  $company_id: uuid!
+  $payment_method: String!
+  $date: date!
+  $invoice_lines: [sales_invoice_line_insert_input!]! = []
+  $deliveries: [sales_invoice_delivery_insert_input!]! = []
+  $deliveries_ids: [uuid!]! = []
+  $amount_ttc: numeric
+  $amount_ht: numeric
+  $amount_tva: numeric
+) {
+  insert_sales_invoice_one(
+    object: {
+      client_id: $client_id
+      amount_ttc: $amount_ttc
+      amount_ht: $amount_ht
+      amount_tva: $amount_tva
+      contact_id: $contact_id
+      company_id: $company_id
+      payment_method: $payment_method
+      date: $date
+      deliveries: { data: $deliveries }
+      invoice_lines: { data: $invoice_lines }
+    }
+  ) {
+    id
+    ref
+    client_id
+    company_id
+    contact_id
+    date
+    deliveries {
+      delivery_id
+    }
+    payment_method
+    invoice_lines{
+      id
+      unit_price
+      product_code
+      product_label
+      quantity
+      total
+      product_type
+    }
+    amount_ttc
+    amount_ht
+    amount_tva
+  }
+
+  update_sales_delivery(where: {id: {_in: $deliveries_ids}}, _set: {status: "Facturé"}) {
+    affected_rows
+  }
+}

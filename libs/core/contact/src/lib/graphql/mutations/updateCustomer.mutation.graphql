@@ -1,0 +1,38 @@
+mutation updateCustomer(
+  $id: uuid!
+  $FAX: String
+  $code: String
+  $mail: String
+  $name: String
+  $note: String
+  $phone: String
+  $website: String
+  $ICE: String
+  $IF: String
+  $type: String
+) {
+  update_contact_customer_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      FAX: $FAX
+      code: $code
+      mail: $mail
+      name: $name
+      note: $note
+      phone: $phone
+      website: $website
+      ICE: $ICE
+      IF: $IF
+      type: $type
+    }
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}

@@ -1,0 +1,6 @@
+mutation DeleteProvider($id: uuid!) {
+  delete_contact_provider_by_pk(id: $id) {
+    id
+    name
+  }
+}

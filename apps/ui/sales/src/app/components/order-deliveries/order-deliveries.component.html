@@ -1,0 +1,17 @@
+<!-- <mat-toolbar style='background-color:transparent'>
+  <span>Livraisons!</span>
+</mat-toolbar>
+<app-table [data]="dataSource" [templates]="{
+  link: link
+}" [columnsToShow]="displayedColumns" [withCheckbox]=false [withFilter]=false>
+</app-table> -->
+<ngx-main-grid [columnId]="columnId"
+[withToolbar]="false"
+[withCrud]="false"
+[withDetails]="false"
+(triggerEvent)="eventTriggering($event)"
+[rowData]="data$"
+
+rowGroupPanelShow="hide"
+[columnDefs]="columnDefs">
+</ngx-main-grid>

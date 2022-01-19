@@ -1,0 +1,5 @@
+mutation DeletePurchaseDelivery($ids: [Int!]!) {
+  delete_purchase_delivery(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

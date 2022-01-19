@@ -1,0 +1,22 @@
+query getGlassById($id: uuid!) {
+  product_glass_by_pk(id: $id) {
+    createdBy
+    createdAt
+    id
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+     companies {
+        name
+        id
+      }
+    }
+    thickness
+    updatedAt
+    updatedBy
+  }
+}

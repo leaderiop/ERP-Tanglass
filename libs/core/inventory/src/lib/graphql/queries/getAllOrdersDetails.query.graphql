@@ -1,0 +1,35 @@
+query GetAllOrdersDetails {
+  stock_order_item {
+    quantity
+    status
+    substance {
+      productGlass {
+        code
+        label
+        price
+        unit
+      }
+      productAccessory {
+        code
+        label
+        price
+        unit
+      }
+    }
+    id
+    transfer_order {
+      id
+      date
+      deadline
+      fromwarehouse {
+        name
+      }
+      towarehouse {
+        name
+      }
+    }
+  }
+}
+
+
+

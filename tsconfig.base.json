@@ -1,0 +1,74 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "importHelpers": true,
+    "module": "es2020",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"],
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ],
+    "paths": {
+      "@Tanglass-erp/main/*": ["./apps/tanglass-erp/src/*"],
+      "@TanglassUi/management/*": ["./apps/ui/management/src/app/*"],
+      "@TanglassUi/inventory/*": ["./apps/ui/inventory/src/app/*"],
+      "@TanglassUi/contact/*": ["./apps/ui/contact/src/app/*"],
+      "@TanglassUi/purchase/*": ["./apps/ui/purchase/src/app/*"],
+      "@TanglassUi/product/*": ["./apps/ui/product/src/app/*"],
+      "@TanglassUi/sales/*": ["./apps/ui/sales/src/app/*"],
+      "@TanglassUi/cash-register/*": ["./apps/ui/cash-register/src/app/*"],
+      "@TanglassUi/manufacturing/*": ["./apps/ui/manufacturing/src/app/*"],
+      "@TanglassCore/*": ["./libs/tanglass-core/src/*"],
+      "@TanglassTheme/*": ["./libs/theme/tanglass-theme/src/*"],
+      "@TanglassRouting/*": ["./apps/tanglass-routing/src/app/*"],
+      "@TanglassStore/management/*": ["libs/store/managment/src/*"],
+      "@TanglassStore/contact/*": ["libs/store/contact/src/*"],
+      "@TanglassStore/inventory/*": ["libs/store/inventory/src/*"],
+      "@TanglassStore/product/*": ["libs/store/product/src/*"],
+      "@TanglassStore/shared/*": ["libs/store/shared/src/*"],
+      "@tanglass-erp/material": ["libs/theme/material/src/index.ts"],
+      "@tanglass-erp/store/app": ["libs/store/app/src/index.ts"],
+      "@tanglass-erp/ag-grid": ["libs/ag-grid/src/index.ts"],
+      "@tanglass-erp/infrastructure/graphql": [
+        "libs/infrastructure/graphql/src/index.ts"
+      ],
+      "@tanglass-erp/core/management": ["libs/core/management/src/index.ts"],
+      "@tanglass-erp/core/product": ["libs/core/product/src/index.ts"],
+      "@tanglass-erp/core/contact": ["libs/core/contact/src/index.ts"],
+      "@tanglass-erp/core/shared": ["libs/core/shared/index.ts"],
+      "@tanglass-erp/core/inventory": ["libs/core/inventory/src/index.ts"],
+      "@tanglass-erp/store/inventory": ["libs/store/inventory/src/index.ts"],
+      "@tanglass-erp/store/shared": ["libs/store/shared/src/index.ts"],
+      "@tanglass-erp/core/common": ["libs/core/common/src/index.ts"],
+      "@tanglass-erp/store/sales": ["libs/store/sales/src/index.ts"],
+      "@tanglass-erp/core/sales": ["libs/core/sales/src/index.ts"],
+      "@tanglass-erp/core/manufacturing": [
+        "libs/core/manufacturing/src/index.ts"
+      ],
+      "@tanglass-erp/store/manufacturing": [
+        "libs/store/manufacturing/src/index.ts"
+      ],
+      "@tanglass-erp/core/cash-register": [
+        "libs/core/cash-register/src/index.ts"
+      ],
+      "@tanglass-erp/store/cash-register": [
+        "libs/store/cash-register/src/index.ts"
+      ],
+      "@tanglass-erp/store/purchase": ["libs/store/purchase/src/index.ts"],
+      "@tanglass-erp/core/purchase": ["libs/core/purchase/src/index.ts"]
+    },
+    "baseUrl": ".",
+    "rootDir": "."
+  }
+}

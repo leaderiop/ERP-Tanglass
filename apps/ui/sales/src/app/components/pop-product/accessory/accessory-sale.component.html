@@ -1,0 +1,93 @@
+<ngx-dialog-body title="Ajouter Accessoire">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="outerContainer">
+      <div fxLayout="row" fxLayoutGap="15px">
+        <div fxLayoutAlign="center center" fxFlex="50">
+          <mat-form-field class="form-element">
+            <mat-label>Code</mat-label>
+            <input type="text" placeholder="Pick one" matInput formControlName="product" [matAutocomplete]="code">
+            <button type="button" *ngIf="form?.controls['product']" matSuffix mat-icon-button aria-label="Clear"
+              (click)="clearCode()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-autocomplete #code="matAutocomplete" (optionSelected)="onCodeSelected($event)"
+              [displayWith]="displayFnProduct">
+              <mat-option *ngFor="let product of filteredProducts | async " [value]="product">
+                {{product?.product?.code}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="!form?.controls['product']?.valid && form?.controls['product']?.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayoutAlign="center center" fxFlex="50">
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Désignation" formControlName="label">
+            <mat-error *ngIf="!form?.controls['label']?.valid && form?.controls['label']?.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <div fxLayoutAlign="center center" fxFlex="50">
+          <mat-form-field class="form-element">
+            <input type="number" matInput placeholder="Quantité" formControlName="quantity">
+            <mat-error *ngIf="!form?.controls['quantity']?.valid && form?.controls['quantity']?.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayoutAlign="center center" fxFlex="50">
+          <mat-form-field class="form-element">
+            <mat-label>Stock</mat-label>
+            <input type="text" placeholder="Pick one" matInput formControlName="warehouse" [matAutocomplete]="stock">
+            <mat-autocomplete #stock="matAutocomplete" (optionSelected)="onWarehouseSelected($event)"
+              [displayWith]="displayFnWarehouse">
+              <mat-option *ngFor="let warehouse of filteredWarehouses |async" [value]="warehouse">
+                {{warehouse?.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="!form?.controls['warehouse']?.valid && form?.controls['warehouse']?.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <mat-form-field class="form-element">
+          <input type="number" matInput placeholder="Prix" formControlName="price">
+          <mat-error *ngIf="!form?.controls['price']?.valid && form?.controls['price']?.touched">
+            {{ priceMarginMsg }}
+          </mat-error>
+        </mat-form-field>
+        <div fxLayoutAlign="center center" fxFlex="50">
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Unité" formControlName="unit">
+            <mat-error *ngIf="!form?.controls['unit']?.valid && form?.controls['unit']?.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-toolbar *ngIf="errorMessage" style='background-color:#f4d8d3'>
+        <span class="alert">{{errorMessage}}!</span>
+        <span class="example-spacer"></span>
+        <button type="button" (click)='clearMessage()' matSuffix mat-icon-button aria-label="Clear message">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+  </form>
+
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+    <button type="submit" mat-flat-button color="primary" (click)="onSubmit()" type="submit" style="width : 8em;margin-right: 8px;">
+      CONFIRMER
+    </button>
+    <button type="button" mat-flat-button (click)='close()' class="mat-bg-warn mr-8" style="width : 8em;">
+      ANNULER
+    </button>
+  </div>
+</ngx-dialog-body>

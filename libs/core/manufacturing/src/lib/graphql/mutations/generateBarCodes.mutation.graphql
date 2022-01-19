@@ -1,0 +1,24 @@
+mutation GenerateBarCodes(
+  $objects: [manufacturing_manufacturing_line_insert_input!]!
+) {
+  insert_manufacturing_manufacturing_line(objects: $objects) {
+    affected_rows
+    returning {
+      id
+      status
+      glass_id
+      manufacturing_services {
+        service_draft {
+          labelFactory
+          id
+        }
+      }
+      manufacturing_consumables {
+        consumable_draft {
+          labelFactory
+          id
+        }
+      }
+    }
+  }
+}

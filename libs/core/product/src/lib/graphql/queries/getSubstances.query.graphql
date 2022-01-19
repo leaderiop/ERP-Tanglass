@@ -1,0 +1,25 @@
+query GetAllSubstances {
+  product_substance {
+    id
+    productAccessory {
+      code
+      label
+      unit
+    }
+    productConsumable {
+      code
+      label
+      unit
+    }
+    productGlass {
+      code
+      label
+      unit
+    }
+    supply {
+      code
+      label
+      unit
+    }
+  }
+}

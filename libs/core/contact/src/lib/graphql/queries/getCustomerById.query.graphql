@@ -1,0 +1,63 @@
+query GetCustomerById($id: uuid!) {
+  contact_customer_by_pk(id: $id) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    note
+    website
+    FAX
+    type
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+    orders_aggregate {
+      aggregate {
+        count(columns: id)
+        sum {
+          total_ht
+          total_tax
+          total_ttc
+        }
+      }
+      nodes {
+        company {
+          name
+          id
+        }
+        delivery_status
+        payment_status
+        id
+        draft_id
+        ref
+        total_ht
+        total_tax
+        total_ttc
+        date
+        deadline
+        salepoint {
+          name
+        }
+        ref
+      }
+    }
+  }
+}

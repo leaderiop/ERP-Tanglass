@@ -1,0 +1,20 @@
+query GetAllAccessories {
+  product_accessory {
+    id
+    category
+    quota
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    substanceid
+  }
+}

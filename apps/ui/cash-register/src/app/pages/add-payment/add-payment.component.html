@@ -1,0 +1,46 @@
+<div class='m-8' fxLayout='row wrap'>
+  <ngx-fiche-card title='Nouveau paiement' fxFlex='100%' fxFlex.gt-md='30%' fxLayoutAlign="stretch">
+    <dynamic-form  #form [fields]="regConfig"
+                  [withActions]='canPay'
+                  (submit)="submit($event)">
+    </dynamic-form>
+  </ngx-fiche-card>
+
+  <ngx-fiche-card title='Commandes' fxFlex='100%' fxFlex.gt-md='70%'>
+  <app-table
+    [withCheckbox]="true"
+    [data]="orders$ | async"
+    (select)='selectOrders($event)'
+    [templates]="{
+    delivery_status: delivery,
+    payment_status: payment,
+    'date': date
+    }"
+    [columnsToShow]="ordersColumns">
+  </app-table>
+  </ngx-fiche-card>
+
+    <ng-template #date let-item="data">
+      {{item | date}}
+    </ng-template>
+    <ng-template #delivery let-item="data">
+      <mat-chip-list>
+        <mat-chip [class]='chipDeliveryColors[item]'>{{item}}</mat-chip>
+      </mat-chip-list>
+    </ng-template>
+
+    <ng-template #payment let-item="data">
+      <mat-chip-list>
+        <mat-chip [class]='chipPaymentStatus[item]'>{{item}}</mat-chip>
+      </mat-chip-list>
+    </ng-template>
+</div>
+
+<ngx-fiche-card title='Situation du Client'>
+  <app-table
+    #customerSituationTable
+    [data]="customerSituation$ | async"
+    [withCheckbox]='false'
+    [columnsToShow]="customerSituationColumns">
+  </app-table>
+</ngx-fiche-card>

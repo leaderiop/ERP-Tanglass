@@ -1,0 +1,31 @@
+query GetConsumableWarehousesById($id: uuid!) {
+  stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
+    aggregate {
+      sum {
+        quantity
+      }
+      max {
+        quantity
+      }
+      min {
+        quantity
+      }
+      count
+    
+    }
+    nodes {
+      quantity
+      substance {
+        productConsumable {
+          code
+          label
+          price
+        }
+      }
+      warehouse {
+        name
+        id
+      }
+    }
+  }
+}

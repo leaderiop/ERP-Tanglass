@@ -1,0 +1,21 @@
+mutation UpdateDeliveryLine(
+  $amount: numeric
+  $delivered: numeric
+  $id: uuid!
+  $product_draft_id: uuid!
+) {
+  update_sales_delivery_line_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      amount: $amount
+      delivered: $delivered
+      id: $id
+      product_draft_id: $product_draft_id
+    }
+  ) {
+    id
+    amount
+    delivered
+    product_draft_id
+  }
+}

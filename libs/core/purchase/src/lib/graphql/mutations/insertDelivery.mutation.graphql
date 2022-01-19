@@ -1,0 +1,30 @@
+mutation InsertPurchaseDelivery($date: date, $provider_id: uuid, $items: [purchase_delivery_item_insert_input!]! = []) {
+  insert_purchase_delivery_one(object: {date: $date, provider_id: $provider_id, delivery_items: {data: $items, on_conflict: {constraint: delivery_item_pkey, update_columns: delivery_id}}}) {
+    date
+    id
+    delivery_items {
+      id
+      code
+      delivery_id
+      id
+      label
+      quantity
+      substance_id
+      cost
+      unit
+      warehouse {
+        id
+        name
+        company {
+          name
+        }
+      }
+    }
+    provider {
+      id
+      code
+      name
+      phone
+    }
+  }
+}

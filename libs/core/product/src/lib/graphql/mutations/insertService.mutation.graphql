@@ -1,0 +1,21 @@
+mutation InsertService($serviceConfigid: uuid, 
+$product: product_product_insert_input!,
+ $paramValues: jsonb) {
+  insert_product_service_one(object: 
+  {serviceConfigid: $serviceConfigid,
+   product: {data: $product},
+    paramValues: $paramValues}) {
+    product {
+      code
+      label
+      price
+      priceMax
+      priceMin
+      unit
+      companies {
+        id
+        name
+      }
+    }
+  }
+}

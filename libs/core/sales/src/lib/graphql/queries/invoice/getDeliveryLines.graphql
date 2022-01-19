@@ -1,0 +1,12 @@
+query getDeliveryLines($deliveries: [uuid!]!=[]) {
+  sales_delivery_line(where: {delivery: {_in: $deliveries}, delivered: {_neq: 0}}) {
+    delivered
+    product_draft {
+      type
+      product_code
+      price
+      label
+    }
+    amount
+  }
+}

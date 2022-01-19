@@ -1,0 +1,117 @@
+<mat-toolbar style='background-color:transparent'>
+  <span class="fill-remaining-space">Ajustement Du Stock</span>
+  <button mat-flat-button color="primary" (click)="onSubmit()" type="submit" style="width : 8em;margin-right: 8px;">
+    CONFIRMER
+  </button>
+  <button mat-flat-button class="mat-bg-warn mr-8" style="width : 8em;">
+    ANNULER
+  </button>
+</mat-toolbar>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
+  <div class="outerContainer">
+    <div fxLayout="row" fxLayoutGap="50px" style="padding-bottom:25px">
+      <div fxLayoutAlign="left left" fxFlex="30">
+        <mat-radio-group aria-label="Select an option" formControlName="type">
+          <mat-radio-button *ngFor="let type of types" [value]="type" style="padding-right:50px">{{type}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="50px">
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <mat-label>Code</mat-label>
+          <input type="text" placeholder="Pick one"  matInput formControlName="code"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCodeSelected($event)">
+            <mat-option *ngFor="let product of filteredProducts | async " [value]="product?.product?.code">
+              {{product?.product?.code}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="!formGroup.controls['code'].valid && formGroup.controls['code'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Désignation" formControlName="label">
+          <mat-error *ngIf="!formGroup.controls['label'].valid && formGroup.controls['label'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Unité" formControlName="unit">
+          <mat-error *ngIf="!formGroup.controls['unit'].valid && formGroup.controls['unit'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="50px">
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <mat-label>Entrepôt</mat-label>
+          <input type="text" placeholder="Pick one"  matInput formControlName="warehouseName"
+            [matAutocomplete]="autoW">
+          <mat-autocomplete #autoW="matAutocomplete" (optionSelected)="onWarehouseSelected($event)">
+            <mat-option *ngFor="let warehouse of filteredWarehouses | async " [value]="warehouse?.name">
+              {{warehouse?.name}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="!formGroup.controls['warehouseName'].valid && formGroup.controls['warehouseName'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Société" formControlName="companyName">
+          <mat-error *ngIf="!formGroup.controls['companyName'].valid && formGroup.controls['companyName'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Quantité" formControlName="oldQuantity">
+          <mat-error *ngIf="!formGroup.controls['oldQuantity'].valid && formGroup.controls['oldQuantity'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="50px">
+      <div fxLayoutAlign="center center" fxFlex="30">
+        <mat-form-field class="form-element">
+          <input matInput type="number" placeholder="Quantité" formControlName="newQuantity">
+          <mat-error *ngIf="!formGroup.controls['newQuantity'].valid && formGroup.controls['newQuantity'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex="63">
+        <mat-form-field class="form-element">
+          <mat-label>Raison</mat-label>
+          <mat-select  formControlName="reason" >
+            <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="!formGroup.controls['reason'].valid && formGroup.controls['reason'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" class="grid">
+      <div fxLayoutAlign="center center" fxFlex="96">
+        <mat-form-field appearance="fill" class="form-element ">
+          <mat-label>Note</mat-label>
+          <textarea matInput rows="7" formControlName="note" ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>

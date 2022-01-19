@@ -1,0 +1,68 @@
+mutation InsertConsumableDraft(
+  $company_id: uuid
+  $company_name: String
+  $label: String
+  $price: numeric
+  $product_code: String
+  $quantity: numeric
+  $total_price: numeric
+  $type: sales_product_type_enum
+  $unit: String
+  $draft_id: Int
+  $dependent_id: uuid
+  $m2: numeric
+  $ml: numeric
+  $substance_id: uuid
+  $warehouse_id: uuid
+  $isRepeated: Boolean = false
+  $labelFactory: String
+) {
+  insert_sales_consumable_draft_one(
+    object: {
+      product_draft: {
+        data: {
+          company_id: $company_id
+          label: $label
+          price: $price
+          product_code: $product_code
+          company_name: $company_name
+          quantity: $quantity
+          total_price: $total_price
+          type: $type
+          unit: $unit
+          draft_id: $draft_id
+          m2: $m2
+          ml: $ml
+          substance_id: $substance_id
+          warehouse_id: $warehouse_id
+          isRepeated: $isRepeated
+        }
+      }
+      dependent_id: $dependent_id
+      labelFactory: $labelFactory
+    }
+  ) {
+    id
+    dependent_id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      isRepeated
+      isLaunched
+      total_price
+      type
+      unit
+      width
+      substance_id
+      warehouse_id
+      draft_id
+    }
+  }
+}

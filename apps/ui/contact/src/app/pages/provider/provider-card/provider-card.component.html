@@ -1,0 +1,81 @@
+<ngx-fiche-card [title]="title" [data]="passedData">
+
+    <mat-accordion class="headers-align">
+      <mat-expansion-panel #contactPanel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-color-primary font-weight-bold">
+            Contacts
+          </mat-panel-title>
+          <mat-panel-description>
+            Cliquez pour les {{contactPanel.expanded?hideMessage:showMessage}}
+            <mat-icon (click)="openDialog('contact')" >add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-accordion class="headers-align" [multi]="false">
+          <mat-expansion-panel *ngFor="let item of data?.contacts; index as i;trackBy: trackByFn"
+                               [expanded]="stepContact === i"
+                               (opened)="setStepContact(i)"
+                               [hideToggle]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{item.code}}
+              </mat-panel-title>
+              <mat-panel-description>
+                <span  fxFlex="30"><h3>{{item.name}}</h3></span>
+                <span  fxFlex="30"><h3>{{item.phone}}</h3></span>
+                <span  fxFlex="30"><h3>{{item.mail}}</h3></span>
+              <mat-icon fontSet="fas" color="primary" fontIcon="fa-user-circle"></mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ngx-list-item [data]="contactPassedData(item)" gap="10px">
+            </ngx-list-item>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="deleteContact(item?.id)">Supprimer</button>
+              <button *ngIf="i>0" mat-button color="accent" (click)="prevStepContact()">Précédent</button>
+              <button *ngIf="i<(data?.contacts.length-1)" mat-button color="primary" (click)="nextStepContact()">Suivant</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel #addressPanel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-color-primary font-weight-bold">
+            Adresses
+          </mat-panel-title>
+          <mat-panel-description>
+            Cliquez pour les {{addressPanel.expanded?hideMessage:showMessage}}
+            <mat-icon (click)="openDialog('address')" >add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-accordion class="headers-align" [multi]="false">
+          <mat-expansion-panel *ngFor="let item of data?.addresses; index as i; trackBy: trackByFn"
+                               [expanded]="stepAddress === i"
+                               (opened)="setStepAddress(i)" [hideToggle]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Adresse
+              </mat-panel-title>
+              <mat-panel-description>
+                Adresse {{i+1}}
+                <mat-icon fontSet="fas" color="primary" fontIcon="fa-map"></mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ngx-list-item [data]="addressPassedData(item)" gap="10px">
+            </ngx-list-item>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="deleteAdresse(item?.id)">Supprimer</button>
+              <button *ngIf="i>0" mat-button color="accent" (click)="prevStepAddress()">Précédent</button>
+              <button *ngIf="i<(data?.addresses.length-1)" mat-button color="primary" (click)="nextStepAddress()">Suivant</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+
+</ngx-fiche-card>
+
+

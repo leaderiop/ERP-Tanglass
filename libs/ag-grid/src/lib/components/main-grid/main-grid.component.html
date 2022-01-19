@@ -1,0 +1,136 @@
+<div class="main">
+  <mat-toolbar class="" *ngIf="withToolbar">
+    <div>
+      <span *ngIf="withCrud">
+        <button
+          *ngIf="permissions.add"
+          (click)="triggerAction(operations.add)"
+          mat-icon-button
+          matTooltip="Ajouter"
+          color="primary"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+        </button>
+        <button
+          *ngIf="permissions.delete"
+          [disabled]="selectedData.length === 0"
+          (click)="deleteDialog()"
+          mat-icon-button
+          matTooltip="Supprimer"
+          color="warn"
+        >
+          <mat-icon fontSet="far" fontIcon="fa-trash-alt"></mat-icon>
+        </button>
+        <button
+          *ngIf="withDetails"
+          (click)="triggerAction(operations.loadDetails)"
+          mat-icon-button
+          color="primary"
+        >
+          <mat-icon>center_focus_strong</mat-icon>
+        </button>
+
+        <mat-divider
+          class="mx-3"
+          vertical
+          style="height: auto; display: inline"
+        ></mat-divider>
+      </span>
+      <ng-container *ngFor="let item of extraActions">
+        <button
+          *ngIf="permissions[item.event]"
+          (click)="triggerAction(item.event, getSelectedRows())"
+          mat-icon-button
+          [disabled]="item.selectToShow && selectedData.length === 0"
+          [matTooltip]="item.tooltip"
+        >
+          <mat-icon [color]="item.color">
+            {{ item.icon }}
+          </mat-icon>
+        </button>
+      </ng-container>
+
+      <button (click)="openBottomSheet()" mat-icon-button matTooltip="Exporter">
+        <mat-icon
+          fontSet="fas"
+          class="text-green"
+          fontIcon="fa-file-excel"
+        ></mat-icon>
+      </button>
+    </div>
+
+    <div class="spacer"></div>
+
+  <!--    Date Filter-->
+    <ng-container *ngIf='withDateFilter'>
+    <mat-chip-list>
+      <mat-chip (click)='openFilterDateDialog()'>{{dateText}}</mat-chip>
+    </mat-chip-list>
+    <button (click)='openFilterDateDialog()' mat-icon-button matTooltip="Filtrer par date">
+      <mat-icon>calendar_today</mat-icon>
+    </button>
+    </ng-container>
+
+    <mat-form-field
+      style="font-size: 12px"
+      appearance="outline"
+      class="mt-8"
+      floatLabel="never"
+    >
+      <mat-label>Mot de recherche</mat-label>
+      <input
+        #searchInput
+        placeholder="Mot de recherche"
+        (input)="search(searchInput.value)"
+        matInput
+        type="search"
+      />
+      <button
+        *ngIf="searchInput.value !== ''"
+        style="display: inline"
+        mat-icon-button
+        matSuffix
+        (click)="searchInput.value = ''; resetSearch()"
+        [attr.aria-label]="'cancel Search'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>
+      </button>
+      <button
+        style="display: inline"
+        mat-icon-button
+        matSuffix
+        color="primary"
+        matTooltip="Chercher"
+        (click)="search(searchInput.value)"
+      >
+        <mat-icon fontSet="fas" fontIcon="fa-search"></mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-toolbar>
+  <ag-grid-angular
+    #agGrid
+    [ngStyle]="{ width: width, height: height }"
+    [gridOptions]="gridOptions"
+    [defaultColDef]="defaultColDef"
+    [class]="theme"
+    [enableCharts]="enableCharts"
+    [enableRangeSelection]="true"
+    [masterDetail]='masterDetail'
+    [isRowMaster]='isRowMaster'
+    [rowData]="rowData | async"
+    [columnTypes]="columnTypes"
+    [columnDefs]="columnDefs"
+    [context]="context"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [sideBar]="sideBar"
+    [groupSelectsChildren]="true"
+    localeText="AG_GRID_LOCALE_FR"
+    (gridReady)="onGridReady($event)"
+    [rowGroupPanelShow]="rowGroupPanelShow"
+    [statusBar]="statusBar"
+    rowSelection="multiple"
+  >
+  </ag-grid-angular>
+</div>

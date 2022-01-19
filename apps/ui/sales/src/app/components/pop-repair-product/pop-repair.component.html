@@ -1,0 +1,28 @@
+<ngx-dialog-body title="Créer Bis">
+  <mat-list #products class="list">
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Combien de piéces à refabriquer ?</mat-label>
+        <input type="number" matInput [formControl]="countFormControl" placeholder=' Qté entre 1 et {{row?.count}}'>
+        <mat-error *ngIf="countFormControl.hasError('max') && !countFormControl.hasError('required')">
+          S'il vous plait vérifier que la quantité ne dépasse pas le max {{row?.count}} !
+        </mat-error>
+        <mat-error *ngIf="countFormControl.hasError('required')">
+          Nombre de piéces est <strong>Obligatoire !</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <mat-list-item *ngFor="let product of data" [value]="product">
+      {{product.label}} :
+      <span class="spacer"></span>
+      {{product.quantity}}
+      {{product.unit}}
+
+    </mat-list-item>
+    <div mat-dialog-actions >
+      <button mat-button (click)='confirm()' *ngIf="countFormControl.valid" color="primary"
+      [mat-dialog-close]="true">CONFIRMER</button>
+    <button mat-button color="warn" cdkFocusInitial>ANNULER</button>
+    </div>
+  </mat-list>
+</ngx-dialog-body>

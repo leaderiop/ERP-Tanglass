@@ -1,0 +1,5 @@
+mutation DeleteProductDraft($id: uuid!) {
+  delete_sales_product_draft_by_pk(id: $id) {
+    id
+  }
+}

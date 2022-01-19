@@ -1,0 +1,86 @@
+<mat-tab-group [selectedIndex]="0">
+  <mat-tab label="Par semaine">
+
+    <mat-form-field class="mt-3 mr-2">
+      <mat-label>
+        Choisir l'année
+      </mat-label>
+      <input matInput #weekYear placeholder="2020" [value]="date.year()">
+    </mat-form-field>
+    <mat-form-field class="mt-3 mr-5">
+      <mat-label>Sélectionner la semaine</mat-label>
+      <mat-select #weekweek [value]="date.week()">
+        <mat-option *ngFor="let week of weeks" [value]="week">
+          {{week}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button class="ml-3" color="accent" (click)="fetchWeek(weekYear.value, weekweek.value)">Valider</button>
+
+
+    <br>
+  </mat-tab>
+
+  <mat-tab label="Par mois">
+
+
+    <mat-form-field class="mt-3 mr-2">
+      <mat-label>
+        Choisir l'année
+      </mat-label>
+      <input matInput #monthYear placeholder="2020" [value]="date.year()">
+    </mat-form-field>
+    <mat-form-field class="mt-3 mr-5">
+      <mat-label>Sélectionner le mois</mat-label>
+      <mat-select #monthMonth  [value]="date.month()">
+        <mat-option *ngFor="let month of months; index as i" [value]="i">
+          {{month}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <button mat-raised-button color="accent" (click)="fetchMonth(monthYear.value, monthMonth.value)">Valider</button>
+    <br>
+
+  </mat-tab>
+
+
+  <mat-tab label="Par trimestre">
+
+
+    <mat-form-field class="mt-3 mr-2">
+      <mat-label>
+        Choisir l'année
+      </mat-label>
+      <input matInput #trimesterYear placeholder="2020" [value]="date.year()">
+    </mat-form-field>
+    <mat-form-field class="mt-3 mr-5">
+      <mat-label>Sélectionner le trimestre</mat-label>
+      <mat-select #trimesterTrimester  [value]="1">
+        <mat-option *ngFor="let trimester of [1, 2, 3, 4]; index as i" [value]="trimester">
+          {{trimester}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="fetchTrimester(trimesterYear.value, trimesterTrimester.value)">Valider</button>
+    <br>
+
+  </mat-tab>
+
+  <mat-tab label="Par année">
+
+    <mat-form-field class="mt-3 mr-2">
+      <mat-label>
+        Choisir l'année
+      </mat-label>
+      <input matInput #yearYear placeholder="2020" [value]="date.year()">
+    </mat-form-field>
+
+
+    <button mat-raised-button class="ml-3" color="accent" (click)="fetchYear(yearYear.value)">Valider</button>
+    <br>
+  </mat-tab>
+
+</mat-tab-group>

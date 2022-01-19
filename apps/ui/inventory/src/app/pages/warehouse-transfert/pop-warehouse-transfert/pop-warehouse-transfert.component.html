@@ -1,0 +1,73 @@
+<ngx-dialog-body [title]="title">
+  <mat-horizontal-stepper *ngIf="!data?.id ; else editTemplate" linear #stepper>
+    <mat-step [stepControl]="transfertForm" [editable]="true">
+      <ng-template matStepLabel>Informations générales</ng-template>
+      <dynamic-form #transfert_form [fields]="regConfig"
+                    [withActions]="false"
+                    (close)="closePopup()"
+                    (submit)="submit($event)">
+      </dynamic-form>
+      <div class="mt-12">
+        <button mat-button matStepperNext >Suivant</button>
+      </div>
+    </mat-step>
+
+    <mat-step [editable]="true" [stepControl]="formArray">
+      <ng-template matStepLabel>Articles</ng-template>
+      <mat-accordion class="accordion-headers">
+        <mat-expansion-panel class="example-headers-align" *ngFor="let fields of orderForms; index as index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Article
+            </mat-panel-title>
+            <mat-panel-description>
+              Article {{index+1}}
+              <mat-icon color="primary" fontSet="fas" fontIcon="fa-shopping-cart">
+              </mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <dynamic-form #orderItem
+                        [fields]="fields"
+                        [withActions]="false"
+                        (close)="closePopup()"
+                        (submit)="submit($event)">
+          </dynamic-form>
+          <mat-action-row>
+            <button mat-button *ngIf="orderForms.length !==0" color="warn" (click)="deleteOrderItem(fields)">Supprimer</button>
+            <button mat-button color="primary" (click)="newOrderItem()">Ajouter</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="mt-12">
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </mat-step>
+
+  <!--   *** End *** -->
+    <mat-step>
+      <ng-template matStepLabel>Terminer</ng-template>
+      <p>Vous avez terminé maintenant.</p>
+      <div class="mt-12">
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button (click)="stepper.reset()">Réinitialiser</button>
+        <button mat-button color="primary" (click)="submitAll()" cdkFocusInitial>Confirmer</button>
+      </div>
+    </mat-step>
+    <!--   *** Icons *** -->
+    <ng-template matStepperIcon="edit">
+      <mat-icon fontSet="fas" fontIcon="fa-check"></mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="done">
+      <mat-icon fontSet="fas" fontIcon="fa-check"></mat-icon>
+    </ng-template>
+
+  </mat-horizontal-stepper>
+  <ng-template #editTemplate>
+    <dynamic-form #transfert_form [fields]="regConfig"
+                  [withActions]="true"
+                  (close)="closePopup()"
+                  (submit)="submit($event)">
+    </dynamic-form>
+  </ng-template>
+</ngx-dialog-body>

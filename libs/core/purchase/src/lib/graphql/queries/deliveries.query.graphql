@@ -1,0 +1,13 @@
+query GetAllPurchasesDeliveries {
+  purchase_delivery {
+    date
+    id
+    ref
+    provider {
+      id
+      code
+      name
+      phone
+    }
+  }
+}

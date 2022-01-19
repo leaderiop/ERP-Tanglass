@@ -1,0 +1,19 @@
+query GetProductsGroup($draft_id: Int!, $_nin: [sales_product_type_enum!] ) {
+  sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_nin: $_nin}}) {
+    company_id
+    company_name
+    draft_id
+    heigth
+    id
+    label
+    m2
+    ml
+    price
+    product_code
+    quantity
+    total_price
+    type
+    unit
+    width
+  }
+}

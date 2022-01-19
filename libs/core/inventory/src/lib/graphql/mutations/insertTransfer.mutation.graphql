@@ -1,0 +1,8 @@
+mutation InsertTranfser($date: date, $order_itemid: uuid, $quantity: Float, $status: String, $substanceid: uuid, $warehouseid: uuid ) {
+  createTransferItem(date: $date, order_itemid: $order_itemid, quantity: $quantity, status: $status, substanceid: $substanceid, warehouseid: $warehouseid) {
+    date
+    id
+    quantity
+    status
+  }
+}

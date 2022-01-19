@@ -1,0 +1,156 @@
+{
+  "npmScope": "tanglass-erp",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "tanglass-theme": {
+      "tags": []
+    },
+    "store-managment": {
+      "tags": []
+    },
+    "ui-management": {
+      "tags": []
+    },
+    "ui/management-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-management"]
+    },
+    "printer": {
+      "tags": []
+    },
+    "material": {
+      "tags": []
+    },
+    "store-app": {
+      "tags": []
+    },
+    "ui-production": {
+      "tags": []
+    },
+    "ui/production-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-production"]
+    },
+    "ui-inventory": {
+      "tags": []
+    },
+    "ui/inventory-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-inventory"]
+    },
+    "ag-grid": {
+      "tags": []
+    },
+    "ui-product": {
+      "tags": []
+    },
+    "ui-product-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-product"]
+    },
+    "infrastructure-graphql": {
+      "tags": []
+    },
+    "core-management": {
+      "tags": []
+    },
+    "core-product": {
+      "tags": []
+    },
+    "core-contact": {
+      "tags": []
+    },
+    "ui-contact": {
+      "tags": []
+    },
+    "ui/contact-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-contact"]
+    },
+    "store-contact": {
+      "tags": []
+    },
+    "core-inventory": {
+      "tags": []
+    },
+    "store-inventory": {},
+    "store-product": {
+      "tags": []
+    },
+    "store-shared": {
+      "tags": []
+    },
+    "core-common": {
+      "tags": []
+    },
+    "tanglass-main": {
+      "tags": []
+    },
+    "tanglass-main-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tanglass-main"]
+    },
+    "ui-purchase": {
+      "tags": []
+    },
+    "ui-purchase-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-purchase"]
+    },
+    "store-sales": {
+      "tags": []
+    },
+    "core-sales": {
+      "tags": []
+    },
+    "ui-sales": {
+      "tags": []
+    },
+    "ui/sales-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-sales"]
+    },
+    "core-manufacturing": {
+      "tags": []
+    },
+    "store-manufacturing": {
+      "tags": []
+    },
+    "ui-manufacturing": {
+      "tags": []
+    },
+    "ui/manufacturing-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-manufacturing"]
+    },
+    "ui-cash-register": {
+      "tags": []
+    },
+    "ui/cash-register-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-cash-register"]
+    },
+    "core-cash-register": {
+      "tags": []
+    },
+    "store-cash-register": {
+      "tags": []
+    },
+    "store-purchase": {
+      "tags": []
+    },
+    "core-purchase": {
+      "tags": []
+    }
+  }
+}

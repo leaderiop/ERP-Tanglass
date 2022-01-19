@@ -1,0 +1,28 @@
+.mat-color-primary {
+  background-color: var(--color-primary);
+}
+
+.flip {
+  margin-top: -30px !important;
+}
+
+.card {
+  padding: 0;
+  padding-bottom: 20px;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+
+.label {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,9 @@
+query getCustomerSituation($customer_id: uuid) {
+  customer_situation(where: {customer_id: {_eq: $customer_id}}) {
+    order_ref
+    customer_id
+    total_ttc
+    paid
+    credit
+  }
+}

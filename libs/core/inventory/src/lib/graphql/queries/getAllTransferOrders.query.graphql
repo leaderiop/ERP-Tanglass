@@ -1,0 +1,16 @@
+query GetAllTransfersOrders {
+  stock_transfer_order {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}

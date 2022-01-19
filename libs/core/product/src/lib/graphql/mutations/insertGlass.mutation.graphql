@@ -1,0 +1,30 @@
+mutation InsertGlass(
+  $thickness: Int
+  $subsctance: product_substance_insert_input! = { type: glass }
+  $product: product_product_insert_input!
+) {
+  insert_product_glass_one(
+    object: {
+      thickness: $thickness
+      product: { data: $product }
+      substance: { data: $subsctance }
+    }
+  ) {
+    color
+    id
+    thickness
+    type
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+  }
+}

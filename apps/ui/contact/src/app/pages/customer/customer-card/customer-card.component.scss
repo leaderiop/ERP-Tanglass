@@ -1,0 +1,32 @@
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headers-align .mat-form-field + .mat-form-field {
+  margin-left: 3px;
+}
+
+.model div {
+  padding: 5px;
+}
+
+.spacer {
+  flex: 0.25 0.25 ;
+}
+
+::ng-deep .mat-accordion{
+  //background: rgba(0,0,0,0);
+  color: rgba(0,0,0,0); /* transparent */
+  border-bottom: none !important;
+}
+::ng-deep .mat-expansion-panel-header{
+  /* styles that were added to panel before */
+ // background: rgba(0,0,0,.87) ;
+  color: rgba(0,0,0,.87); 
+}

@@ -1,0 +1,20 @@
+mutation UpdateDraft(
+  $id: Int!
+  $status: sales_draft_status_enum = commande
+  $glasses: [sales_glass_draft_insert_input!]! = []
+  $accessories: [sales_accessory_draft_insert_input!]! = []
+  $consumables: [sales_consumable_draft_insert_input!]! = []
+) {
+  update_sales_draft_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
+    id
+  }
+  insert_sales_glass_draft(objects: $glasses) {
+    affected_rows
+  }
+  insert_sales_accessory_draft(objects: $accessories) {
+    affected_rows
+  }
+  insert_sales_consumable_draft(objects: $consumables) {
+    affected_rows
+  }
+}

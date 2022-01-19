@@ -1,0 +1,18 @@
+query GetCompanyById($id: uuid! ) {
+  management_company_by_pk (id: $id) {
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+    name
+    phone
+    website
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+    id
+  }
+}

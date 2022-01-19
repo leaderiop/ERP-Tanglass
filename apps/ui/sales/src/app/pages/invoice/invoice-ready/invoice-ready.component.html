@@ -1,0 +1,16 @@
+<mat-card [ngClass.gt-sm]="'w-50'" ngClass="w-100" class="ml-auto mr-auto" *ngIf="invoice$ | async;let invoice; else loading">
+  <mat-card-header>
+  </mat-card-header>
+  <mat-card-content class="text-center">
+    <h2 class="h2">
+      La facture est prête pour être imprimer
+    </h2>
+    <button mat-raised-button class="height-60px width-160px h2" color="primary" (click)="print(invoice)">
+     <mat-icon>print</mat-icon> Imprimer
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loading>
+  <mat-spinner class="mx-auto"></mat-spinner>
+</ng-template>

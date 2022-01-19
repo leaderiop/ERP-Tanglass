@@ -1,0 +1,13 @@
+mutation InsertUser($email: String!, $CIN: String , $active: Boolean = true, $firstname: String , $lastname: String , $password: String!,
+  $phone: String , $role: String !, $SalesPointsid: uuid, $username: String ) {
+  SignUp(email: $email, role: $role, firstname: $firstname, CIN: $CIN, active: $active, lastname: $lastname, password: $password, phone: $phone, SalesPointsid: $SalesPointsid, username: $username) {
+    CIN
+    active
+    firstname
+    id
+    lastname
+    phone
+    username
+    email
+  }
+}

@@ -1,0 +1,30 @@
+mutation InsertContact(
+  $code: String
+  $mail: String
+  $name: String
+  $note: String
+  $phone: String
+  $addresses: [contact_contact_address_insert_input!]! = []
+  $customers: [contact_customer_contact_insert_input!]! = []
+  $providers: [contact_provider_contact_insert_input!]! = []
+) {
+  insert_contact_contact_one(
+    object: {
+      code: $code
+      mail: $mail
+      name: $name
+      note: $note
+      phone: $phone
+      contact_addresses: { data: $addresses }
+      contact_customers: { data: $customers }
+      contact_providers: { data: $providers }
+    }
+  ) {
+    id
+    code
+    mail
+    name
+    note
+    phone
+  }
+}

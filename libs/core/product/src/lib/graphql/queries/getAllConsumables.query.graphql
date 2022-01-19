@@ -1,0 +1,20 @@
+query GetAllConsumables {
+  product_consumable {
+    id
+    category
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    substanceid
+    labelFactory 
+  }
+}

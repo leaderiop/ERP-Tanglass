@@ -1,0 +1,23 @@
+query GetServiceConfigById($id: uuid!) {
+  product_serviceConfig_by_pk(id: $id) {
+    id
+    labelFactory
+    name
+    params
+    services(where: {serviceConfigid: {_eq: $id}}) {
+      product {
+        code
+        label
+        unit
+        price
+        priceMax
+        priceMin
+        companies {
+          name
+          id
+        }
+      }
+      paramValues
+    }
+  }
+}

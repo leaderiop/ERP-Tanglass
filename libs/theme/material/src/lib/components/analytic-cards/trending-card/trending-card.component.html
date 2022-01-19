@@ -1,0 +1,69 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button class="mat-elevation-z0" mat-mini-fab [color]="config.color">
+      <mat-icon class="mat-18">
+        {{ config.icon }}
+      </mat-icon>
+    </button>
+    <div class="mat-card-title mat-color-{{ config.color }} m-0 ml-12">
+      {{ config.title }}
+    </div>
+  </div>
+  <div class="mt-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2
+      *ngIf="!config?.amount; else amount"
+      class="m-0 text-28 font-weight-bold"
+    >
+      {{ config.subtitle }}
+    </h2>
+    <ng-template #amount>
+      <h2 class="m-0 text-28 font-weight-bold">
+        <app-counter
+          fontSize="78"
+          animationTime="1000"
+          [showCircle]="false"
+          [from]="0"
+          [to]="config.amount"
+          [of]="config.ofAmount || config.amount"
+          [finishedText]="config?.subtitle?config?.subtitle:''"
+        >
+          <ng-counter-prefix *ngIf="config?.amountPrefix">
+            &nbsp; {{ config.amountPrefix }} &nbsp;
+          </ng-counter-prefix>
+          <ng-counter-suffix *ngIf="config?.amountSuffix">
+            &nbsp; {{ config.amountSuffix }}
+          </ng-counter-suffix>
+        </app-counter>
+      </h2>
+    </ng-template>
+
+    <div
+      fxLayout="row wrap"
+      fxLayoutAlign="start center"
+      *ngIf="config?.percentage"
+    >
+      <div
+        class="small-circle"
+        [ngClass]="config.down ? 'mat-bg-warn' : 'mat-bg-' + config.color"
+      >
+        <mat-icon class="text-12"> expand_less </mat-icon>
+      </div>
+      <!--      <small class="m-0 ml-4 mat-color-{{config.color}} text-12">-->
+      <!--        ({{config?.percentage}}%)-->
+      <!--      </small>-->
+
+      <app-counter
+        showCircle="true"
+        circleColor="#73D216"
+        animationTime="1000"
+        fontSize="48"
+        [from]="0"
+        [to]="config.percentage"
+        [of]="100"
+      >
+        {{ config?.percentage }}
+        <ng-counter-suffix> % </ng-counter-suffix>
+      </app-counter>
+    </div>
+  </div>
+</mat-card>

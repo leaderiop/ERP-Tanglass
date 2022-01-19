@@ -1,0 +1,40 @@
+mutation InsertCustomer(
+  $FAX: String
+  $code: String
+  $mail: String
+  $name: String
+  $note: String
+  $phone: String
+  $website: String
+  $addresses: [contact_customer_address_insert_input!]! = []
+  $ICE: String
+  $IF: String
+  $type: String
+  $contacts: [contact_customer_contact_insert_input!]! = []
+) {
+  insert_contact_customer_one(
+    object: {
+      FAX: $FAX
+      code: $code
+      mail: $mail
+      name: $name
+      note: $note
+      phone: $phone
+      website: $website
+      customer_addresses: { data: $addresses }
+      ICE: $ICE
+      IF: $IF
+      type: $type
+      customer_contacts: { data: $contacts }
+    }
+  ) {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+  }
+}

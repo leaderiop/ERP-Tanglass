@@ -1,0 +1,9 @@
+mutation DeleteProviderAddress($addressid: uuid!, $id: uuid!) {
+  delete_contact_provider_address_by_pk(
+    addressid: $addressid
+    providerid: $id
+  ) {
+    addressid
+    providerid
+  }
+}

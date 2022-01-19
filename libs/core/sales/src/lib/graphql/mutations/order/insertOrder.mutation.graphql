@@ -1,0 +1,67 @@
+mutation InsertOrder(
+  $draft_id: Int!, 
+  $company_id: uuid, 
+  $contact_id: uuid, 
+  $customer_id: uuid, 
+  $date: date, 
+  $deadline: date, 
+  $total_ht: numeric, 
+  $total_tax: numeric, 
+  $total_ttc: numeric, 
+  $payment_status: String = "non payé", 
+  $delivery_status: String = "non livré", 
+  $salepoint_id: uuid, 
+  $status: sales_draft_status_enum = commande, 
+  $amounts: [sales_amount_insert_input!]!
+  ) {
+  insert_sales_order_one(object: {
+    contact_id: $contact_id,
+    customer_id: $customer_id,
+    date: $date,
+    deadline: $deadline,
+    total_ht: $total_ht,
+    total_tax: $total_tax,
+    total_ttc: $total_ttc,
+    delivery_status: $delivery_status,
+    payment_status: $payment_status,
+    salepoint_id: $salepoint_id,
+    company_id: $company_id,
+    draft_id: $draft_id
+    }) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    salepoint {
+      name
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+  insert_sales_amount(objects: $amounts) {
+    affected_rows
+  }
+  update_sales_draft_by_pk(pk_columns: {
+    id: $draft_id},
+     _set: {
+       status: $status
+       }) {
+    id
+  }
+}

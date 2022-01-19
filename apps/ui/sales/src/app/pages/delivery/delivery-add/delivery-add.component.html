@@ -1,0 +1,50 @@
+<mat-card class="pr-0 pl-0">
+  <mat-card-header class='mw-100'>
+    <mat-card-title class="mw-100 mat-color-primary">
+      <div class='mw-100'>
+      <h1 style='display: inline' class='mr-auto'>
+        Bon de livraison
+      </h1>
+      <button
+        *ngIf='data?.id'
+        id='printer-button'
+        mat-flat-button
+        (click)="print()"
+        color='primary'>
+        <mat-icon>
+          print
+        </mat-icon>
+        &nbsp;IMPRIMER
+      </button>
+        </div>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="px-0 mt-24">
+    <dynamic-form
+      *ngIf="regConfig"
+      #form
+      [fields]="regConfig"
+      [flat]="true"
+      [withActions]="false"
+      (submit)="submit($event)"
+    >
+      <ng-container *ngIf="selectedOrder">
+        <mat-toolbar class="header-info"> Commande Infos </mat-toolbar>
+
+        <ngx-list-item [data]="commandData"></ngx-list-item>
+      </ng-container>
+      <mat-toolbar class="header-info"> Lignes de livraison </mat-toolbar>
+      <ngx-delivery-line
+        *ngIf="(orderLines$ | async) || data; let orderLines"
+        [update]="!!data?.delivery_lines"
+        [deliveryLines]="data?.delivery_lines"
+        [data]="orderLines"
+        #table
+      ></ngx-delivery-line>
+      <mat-card-actions class="mt-12 ml-12" *ngIf='permissions.update'>
+        <button mat-raised-button color="primary">Confirmer</button>
+      </mat-card-actions>
+    </dynamic-form>
+  </mat-card-content>
+</mat-card>

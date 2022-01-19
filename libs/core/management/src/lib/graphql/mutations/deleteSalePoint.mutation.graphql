@@ -1,0 +1,6 @@
+mutation DeleteSalePoint($id: uuid!) {
+  delete_management_salesPoint_by_pk(id: $id) {
+    name
+    id
+  }
+}

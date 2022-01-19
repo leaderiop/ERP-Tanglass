@@ -1,0 +1,10 @@
+<ngx-main-grid [columnId]="columnId"
+               [withToolbar]="true"
+               [withCrud]="true"
+               (triggerEvent)="eventTriggering($event)"
+               [rowData]="data$"
+               [dateText]='dateText'
+               [withDateFilter]='true'
+               [permissions]="permissions"
+               [columnDefs]="columnDefs">
+</ngx-main-grid>

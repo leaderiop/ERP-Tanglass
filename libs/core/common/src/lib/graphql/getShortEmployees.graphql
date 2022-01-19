@@ -1,0 +1,8 @@
+query getShortEmployees {
+  management_userProfile {
+    id
+    username
+    firstname
+    lastname
+  }
+}

@@ -1,0 +1,5 @@
+mutation deleteExpensesById($ids: [Int!]!=[]) {
+  delete_cash_register_expenses(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

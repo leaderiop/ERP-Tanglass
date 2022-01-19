@@ -1,0 +1,33 @@
+query GetAllInvoices(
+  $dateStart: date,
+  $dateEnd: date) {
+  sales_invoice(where:
+   {date: {_gte: $dateStart, _lte: $dateEnd}}) {
+    id
+    client {
+      name
+      phone
+      mail
+    }
+    company{
+      id
+      name
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    date
+    payment_method
+    deliveries {
+      delivery_id
+    }
+    amount_tva
+    amount_ttc
+    amount_ht
+    ref
+    createdAt
+    updated_at
+  }
+}

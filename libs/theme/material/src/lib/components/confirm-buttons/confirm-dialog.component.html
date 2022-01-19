@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p class="mat-color-primary">{{message}}</p>
+</div>
+<div mat-dialog-actions >
+  <button mat-button color="primary" [mat-dialog-close]="false" (click)="onNoClick()" cdkFocusInitial>Annuler</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">Confirmer</button>
+</div>

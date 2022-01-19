@@ -1,0 +1,18 @@
+query GetShortSubstances {
+  product_product {
+    label
+    code
+    glass {
+      substanceid
+    }
+    consumable {
+      substanceid
+    }
+    accessory {
+      substanceid
+    }
+    price
+    priceMax
+    priceMin
+  }
+}

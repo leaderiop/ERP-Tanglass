@@ -1,0 +1,5 @@
+query GetGlassTypes {
+  product_glassType {
+    type
+  }
+}

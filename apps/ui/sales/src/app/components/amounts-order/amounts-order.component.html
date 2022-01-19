@@ -1,0 +1,12 @@
+<mat-toolbar style='background-color:transparent'>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon color="primary">attach_money</mat-icon>
+    </button>
+    <span>Montants!</span>
+</mat-toolbar>
+<app-table  #amountTable [data]="dataSource" 
+  [columnsToShow]="displayedColumns"
+  [withCheckbox]=false
+  [withFilter]=false
+  >
+</app-table>

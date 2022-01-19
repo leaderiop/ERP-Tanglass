@@ -1,0 +1,41 @@
+<mat-card>
+<!--    <mat-card-actions class="row justify-content-end">-->
+<!--        <button mat-icon-button  class="col-1" matTooltip="Imprimer Bon d'Atelier" size="large" shape="rectangle" color="primary" [useExistingCss]="true" printSectionId="print-section" ngxPrint>-->
+<!--          <mat-icon fontSet="fas" fontIcon="fa-print"></mat-icon>-->
+<!--        </button>-->
+<!--    </mat-card-actions>-->
+    <mat-card-content  id="print-section" class="mt-2">
+        <div class="row no-gutters items-group p-2">
+            <div  class="center">
+             <p><strong>Ordre d'emploi (Job Order)</strong></p>
+             </div>
+            <div   class="row container-fluid">
+                <div class="col ">
+                    <p>N°:B.T 000 {{order.id}}</p>
+                    <div class="address">
+                        <p>{{order.date| date :'short'}}</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <p>N°:B.C 000{{order.attachements_id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters items-group">
+            <div class="col-12 label">
+                <p>Description/Dimension:</p>
+            </div>
+            <div class ="col-12 addSpace" *ngFor="let line of linesArray"  >
+                    {{line}}
+
+            </div>
+        </div>
+    </mat-card-content>
+  <mat-card-actions>
+    <button class="ml-auto" mat-fab class="col-1" matTooltip="Imprimer Bon d'Atelier" size="large" shape="rectangle" color="primary"
+            [useExistingCss]="true" printSectionId="print-section" ngxPrint>
+      <mat-icon fontSet="fas" fontIcon="fa-print"></mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+

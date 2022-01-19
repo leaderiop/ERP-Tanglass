@@ -1,0 +1,32 @@
+mutation InsertManyGlasses($glasses: [sales_glass_draft_insert_input!]!) {
+  insert_sales_glass_draft(objects: $glasses) {
+    returning {
+      id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        company_id
+        count
+        isRepeated
+        isLaunched
+        substance_id
+        warehouse_id
+        draft_id
+        glass_draft {
+          id
+        }
+      }
+    }
+  }
+}

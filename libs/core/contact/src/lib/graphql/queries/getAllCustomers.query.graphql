@@ -1,0 +1,22 @@
+query GetAllCustomers {
+  contact_customer {
+    id
+    ICE
+    IF
+    code
+    mail
+    name
+    phone
+    type
+    contacts {
+    id
+    code
+    mail
+    name
+    note
+    phone  
+    }
+  }
+}
+
+

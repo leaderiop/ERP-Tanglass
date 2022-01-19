@@ -1,0 +1,6 @@
+query GetShortCompanies {
+  management_company {
+    id
+    name
+  }
+}

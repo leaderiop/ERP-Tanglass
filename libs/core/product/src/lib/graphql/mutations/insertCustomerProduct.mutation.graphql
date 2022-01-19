@@ -1,0 +1,17 @@
+mutation InsertCustomerProduct(
+  $code: String, $label: String,
+  $price: Float = 0, $priceMax: Float = 0,
+  $priceMin: Float = 0,$thickness:numeric) {
+  insert_product_customer_product_one(object:
+   { product: {data: {code: $code, label: $label,
+    unit: m2, price: $price, priceMax: $priceMax,
+    priceMin: $priceMin}},thickness: $thickness}) {
+    id
+    thickness
+    product {
+      code
+      label
+      unit
+    }
+  }
+}

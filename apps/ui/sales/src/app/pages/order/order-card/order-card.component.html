@@ -1,0 +1,49 @@
+<mat-toolbar *ngIf="isCardMode" style='background-color:transparent'>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span> Votre Commande !</span>
+    <span class="example-spacer"></span>
+    <button  *ngIf="!isLaunched" mat-flat-button (click)='launch()' color="primary" style="width : 8em;margin-right: 8px;">
+        LANCER
+    </button>
+    <button mat-flat-button (click)='edit()' class="mat-bg-warn mr-8" style="width : 8em;">
+        MODIFIER
+    </button>
+    <button id='printer-button' mat-flat-button (click)="print()" color='primary'>
+        <mat-icon>
+            print
+        </mat-icon>
+        &nbsp;IMPRIMER
+    </button>
+</mat-toolbar>
+<mat-toolbar *ngIf="!isCardMode" class="toolbar" style='background-color:transparent'>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Modifications de Commande !</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button (click)="save()" color="primary" style="width : 8em;margin-right: 8px;">
+        CONFIRMER
+    </button>
+    <button mat-flat-button (click)="cancel()" class=" mat-bg-warn" style="width : 8em;">
+        ANNULER
+    </button>
+</mat-toolbar>
+<ngx-fiche-card [data]="passedData" [withToolbar]='false'>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Articles">
+            <ngx-product-draft [isCardMode]='isCardMode' [isLaunched]='isLaunched'></ngx-product-draft>
+            <ngx-amounts-order [isCardMode]='isCardMode'></ngx-amounts-order>
+        </mat-tab>
+        <mat-tab label="Bis">
+           <ngx-order-repairs></ngx-order-repairs>
+        </mat-tab>
+        <mat-tab label="Réglements">
+            <ngx-payments></ngx-payments>
+        </mat-tab>
+        <mat-tab label="Livraisons">
+            <ngx-order-deliveries></ngx-order-deliveries>
+        </mat-tab>
+    </mat-tab-group>
+</ngx-fiche-card>

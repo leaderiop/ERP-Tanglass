@@ -1,0 +1,23 @@
+<ngx-fiche-card [title]="title"
+                [data]="passedData">
+
+  <div fxLayout="column" style="width: 80%">
+    <mat-accordion class="headers-align ml-12">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Verre
+          </mat-panel-title>
+          <mat-panel-description>
+            {{glassData[0].value}}
+            <mat-icon fontSet="fas" color="primary" fontIcon="fa-building"></mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ngx-list-item [data]="glassData" gap="10px">
+        </ngx-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</ngx-fiche-card>
+
+

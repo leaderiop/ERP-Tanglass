@@ -1,0 +1,13 @@
+mutation InsertCompany($CNSS: String!, $ICE: String!, $IF: String!, $RC: String!, $address: String!, $email: String, $name: String!, $phone: String!, $website: String) {
+  insert_management_company_one(object: {CNSS: $CNSS, ICE: $ICE, IF: $IF, RC: $RC, address: $address, email: $email, name: $name, phone: $phone, website: $website}) {
+    id
+    name
+    phone
+    CNSS
+    ICE
+    IF
+    RC
+    address
+    email
+  }
+}

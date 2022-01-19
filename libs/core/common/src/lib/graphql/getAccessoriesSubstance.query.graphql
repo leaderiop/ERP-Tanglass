@@ -1,0 +1,13 @@
+query GetAccessoriesSubstances($id: uuid!) {
+  stock_warehouse_substance(where: {warehouseid: {_eq: $id}, substance: {type: {_eq: accessory}}}) {
+    quantity
+    substance {
+      productAccessory {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}

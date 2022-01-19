@@ -1,0 +1,12 @@
+mutation AddContactAddress($address: contact_address_insert_input!, $id: uuid) {
+  insert_contact_contact_address_one(
+    object: { address: { data: $address }, contactid: $id }
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}

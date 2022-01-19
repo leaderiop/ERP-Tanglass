@@ -1,0 +1,164 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in _palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($mat-deep-purple);
+$app-accent:  mat-palette($mat-orange);
+$app-warn:    mat-palette($mat-red);
+$app-success: mat-palette($mat-light-green);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+$primary: map-get($app-theme, primary);
+$accent: map-get($app-theme, accent);
+$success: map-get($app-theme, success);
+
+:root {
+  --color-primary:#395491;
+  --color-accent: #{mat-color($app-accent)};
+  --color-warn: #{mat-color($app-warn)};
+  --color-success: #{mat-color($app-success)};
+  .mat-color-primary {
+    color: var(--color-primary);
+  }
+
+  .mat-color-accent {
+    color: var(--color-accent);
+  }
+
+  .mat-color-success {
+    color: var(--color-success);
+  }
+
+  .mat-color-danger {
+    color: var(--color-warn);
+  }
+
+  .highlight-color {
+    background-color: rgba(0, 0, 0, .1);
+  }
+}
+
+
+@each $colorName, $matColor in $material-colors {
+  $color500: #222a45;
+  $secondary_color:  #222a45;
+  $primary_color: #ebeff2;
+  $foreground500: map-get(map-get($matColor, contrast), 500);
+  .#{"" + $colorName + ""} {
+    background-color: $color500 !important;
+
+    // Material CDK Table
+    .mat-table {
+      background: transparent !important;
+    }
+    .ngx-datatable.material *,
+    .mat-table,
+    .mat-cell,
+    .mat-header-cell {
+      color: $foreground500 !important;
+    }
+    .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover,
+    .ngx-datatable.material:not(.cell-selection)
+    .datatable-body-row:hover
+    .datatable-row-group {
+      background: $color500, 5;
+    }
+  }
+  // Text color
+  .text-#{"" + $colorName + ""} {
+    color: $color500;
+  }
+  // Sidebar backgrounds
+  .sidebar-#{"" + $colorName + ""} {
+    .navigation-hold {
+      background: rgba($color500, 0.96) !important;
+// items  sub menu text
+      a,
+      .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret),
+      .sidenav li.open > div > a > span:not(.menuitem-badge),
+      .sidenav li.open > a > span,
+      .icon-menu .mat-raised-button,
+      .app-user .app-user-name,
+      .branding .app-logo-text {
+        color: $primary_color !important;
+      }
+      a:hover {
+         background: rgba(darken($color500, 20), 0.2) !important;
+      }
+      .app-user .app-user-photo,
+      .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret) {
+        border-color: $foreground500 !important;
+      }
+      .icon-menu .mat-raised-button,
+      .branding {
+        background: rgba($color500, 0.96) !important;
+      }
+      .app-user {
+        // background: darken($color500, 5) !important;
+
+      }
+      .app-user-photo{
+        color: $primary_color !important;
+
+      }
+
+      li.open {
+        // background: rgba($color500, .3) !important;
+        > a {
+          // background: rgba(darken($color500, 20), .2) !important;
+        }
+      }
+      .text-muted {
+        color: get-contrast-muted-color($color500) !important;
+      }
+    }
+  }
+  // Header backgrounds
+  .topbar-#{"" + $colorName + ""} {
+    .topbar.mat-toolbar {
+     // background: $primary_color !important;
+    background-color:transparent !important;
+    color: $color500 !important;
+    box-shadow: 0.45px 0.45px  0.5px #888888;
+
+    }
+  }
+
+  // Footer background
+  .footer-#{"" + $colorName + ""} {
+    .main-footer {
+      background: $primary_color !important;
+      color: $color500 !important;
+    }
+  }
+
+  // Generate classes for each color shades
+  $contrastMap: map-get($matColor, contrast);
+  @each $shade, $value in $matColor {
+    @if $shade == contrast {
+    } @else {
+      .#{"" + $colorName + ""}-#{$shade} {
+        background-color: $value !important;
+      }
+      // Foreground text color
+      .#{"" + $colorName + ""}-#{$shade}-fg {
+        color: map-get($contrastMap, $shade) !important;
+      }
+
+      // Text color
+      .text-#{"" + $colorName + ""}-#{$shade} {
+        color: $value !important;
+      }
+    }
+  }
+}

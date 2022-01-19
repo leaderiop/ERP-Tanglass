@@ -1,0 +1,68 @@
+<mat-toolbar style="background-color: transparent">
+  Avancement
+  <button
+    [disabled]='!glass?.manufacturing_lines.length'
+    id="printer-button"
+    mat-icon-button
+    ngxPrint
+    printSectionId='barcodes'
+    [useExistingCss]='true'
+    color="primary"
+    style="width: 10em; margin-right: 8px"
+  >
+    <mat-icon> print </mat-icon>
+    &nbsp;IMPRIMER
+  </button>
+</mat-toolbar>
+<section
+  *ngFor="let line of glass?.manufacturing_lines; let itemIndex = index"
+  style="margin-left: 10px; margin-bottom: 20px"
+>
+  <div style="margin-bottom: 10px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="example-label" style="margin-right: 20px">
+        <h3>{{ line?.ref }}</h3>
+      </div>
+      <button
+        mat-stroked-button
+        *ngFor="let step of line?.services; let serviceIndex = index"
+        [style.background-color]="step.isReady ? '#222a45' : '#FBFCFC'"
+        [style.color]="step.isReady ? '#FBFCFC' : '#222a45'"
+        style="width: 10em; margin-left: 10px"
+        (click)="updateState(itemIndex, serviceIndex)"
+      >
+        {{ step?.labelFactory }}
+      </button>
+
+
+    </div>
+
+  </div>
+  <mat-divider></mat-divider>
+
+</section>
+<div fxLayout="row" fxLayoutAlign="end">
+  <button
+    style="width: 10em; margin-right: 8px"
+    (click)="confirm()"
+    mat-raised-button
+    color="primary"
+  >
+    Confirm
+  </button>
+</div>
+
+<div id='barcodes' class='font-weight-bold' [hidden]='true'>
+  <div class='text-justify barcode mr-12' *ngFor="let line of glass?.manufacturing_lines; let itemIndex = index">
+    <span>N°BC: {{data?.order_ref}}</span>
+    <span>N°BT: {{data?.ref}}</span>
+    <span>DESIGN: {{glassDesig }}</span>
+    <span>Dimensions: {{dimensions }}</span>
+    <ngx-barcode
+      bc-element-type="img"
+      style='display: inline'
+      [bc-value]="line?.id"
+      [bc-display-value]="true"
+    ></ngx-barcode>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="mat-bg-primary mx--033 mt--033 px-24 pt-24 pb-96">
+  <h5 class="text-white text-16 mb-16 font-weight-bold">Ventes des 12 derniers mois</h5>
+  <div
+    echarts
+    class="chart m-0"
+    [options]="salesChartBar"
+  ></div>
+</div>
+<div class="mt--72">
+  <div fxLayout="row wrap">
+    <div *ngIf='stats$ | async' fxFlex="100" fxFlex.sm="70" fxFlex.gt-sm="70">
+      <div fxLayout="row wrap">
+        <ngx-amount-card
+          fxFlex="100"
+          fxFlex.sm="50"
+          fxFlex.gt-sm="50"
+          *ngFor="let item of statCardList"
+          [amount]='5000'
+          [config]="item">
+        </ngx-amount-card>
+      </div>
+      <div fxLayout="row wrap">
+        <ngx-trending-card *ngFor="let item of trending_list"
+                           [config]="item"
+                           fxFlex.gt-xs="calc(50% - 16px)" fxFlex="100">
+        </ngx-trending-card>
+      </div>
+    </div>
+    <div fxFlex="100" fxFlex.sm="30" fxFlex.gt-sm="30">
+      <div fxLayout="row wrap">
+        <mat-card fxFlex="100">
+          <mat-card-title class="mb-0">Un graphe</mat-card-title>
+          <small class="text-muted">Dernier 30 jours</small>
+          <div
+            style="height: 280px"
+          >
+<!--            <ngx-my-line-chart></ngx-my-line-chart>-->
+            <div
+              echarts
+              [options]="doughNutPie"
+              style="height: 280px"
+            ></div>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="100">
+          <mat-card class="text-center mat-bg-gray p-sm-24 mat-elevation-z0">
+            <button class="px-24" mat-raised-button color="primary">
+              Click
+            </button>
+          </mat-card>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

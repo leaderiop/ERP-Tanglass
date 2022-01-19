@@ -1,0 +1,44 @@
+query getCashBoxById($id: Int!, $salepoint_id: uuid!) {
+  cash_register_cash_box_by_pk(id: $id) {
+    balance
+    createdAt
+    salepoint_id
+    expenses {
+      amountSpent
+      category
+      createdAt
+      date
+      employee {
+        firstname
+        lastname
+        username
+      }
+      employee_id
+      id
+      name
+      note
+    }
+    createdAt
+    updatedAt
+    name
+    id
+    salepoint {
+      name
+    }
+  }
+
+  sales_payment(where: { order: { salepoint_id: { _eq: $salepoint_id } } }) {
+    id
+    amount
+    comment
+    company {
+      name
+    }
+    customer {
+      name
+    }
+    order_id
+    deadline
+    date
+  }
+}

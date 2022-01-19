@@ -1,0 +1,28 @@
+query GetAllOrders($date: date_comparison_exp) {
+  sales_order(where: {date: $date}) {
+      company {
+        name
+        id
+      }
+      customer {
+        code
+        id
+        name
+        phone
+      }
+      delivery_status
+      payment_status
+      id
+      draft_id
+      ref
+      total_ht
+      total_tax
+      total_ttc
+      date
+      deadline
+    salepoint {
+      name
+    }
+      ref
+  }
+}

@@ -1,0 +1,5 @@
+mutation deleteQuotations($ids: [Int!]!=[]) {
+  delete_sales_quotation(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

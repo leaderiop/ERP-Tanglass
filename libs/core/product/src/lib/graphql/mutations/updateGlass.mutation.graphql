@@ -1,0 +1,40 @@
+mutation UpdateGlass(
+  $id: uuid!
+  $thickness: Int
+  $product: product_product_set_input
+  $code: String!
+  $companies: [product_product_companies_insert_input!]!
+) {
+  update_product_glass_by_pk(
+    pk_columns: { id: $id }
+    _set: { thickness: $thickness }
+  ) {
+    id
+    thickness
+    type
+    color
+  }
+  update_product_product_by_pk(pk_columns: { code: $code }, _set: $product) {
+    code
+    label
+    unit
+    price
+    priceMax
+    priceMin
+  }
+
+  delete_product_product_companies(where: { productcode: { _eq: $code } }) {
+    affected_rows
+  }
+  insert_product_product_companies(
+    objects: $companies
+    on_conflict: { constraint: product_companies_pkey, update_columns: [] }
+  ) {
+    returning {
+      Company {
+        name
+        id
+      }
+    }
+  }
+}

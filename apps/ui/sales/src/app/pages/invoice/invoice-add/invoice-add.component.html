@@ -1,0 +1,40 @@
+<mat-card class="pr-0 pl-0">
+  <mat-card-header>
+    <mat-card-title class="mat-color-primary">
+      <h1 style='display: inline'>Facture</h1>
+      <button
+        *ngIf='id'
+        id='printer-button'
+        mat-flat-button
+        (click)="print()"
+        color='primary'>
+        <mat-icon>
+          print
+        </mat-icon>
+        &nbsp;IMPRIMER
+      </button>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="px-0 mt-24">
+    <dynamic-form
+      #form
+      *ngIf="regConfig"
+      [fields]="regConfig"
+      [flat]="true"
+      [withActions]="false"
+      (submit)="submit($event)"
+    >
+
+      <ngx-deliveries-accordion *ngIf="selectedDeliveries.length" [deliveries]="selectedDeliveries">
+      </ngx-deliveries-accordion>
+
+      <ngx-invoice-lines *ngIf='invoiceLines$ | async; let invoiceLines' [data]='invoiceLines'>
+      </ngx-invoice-lines>
+
+      <mat-card-actions class="mt-12 ml-12">
+        <button type="submit" mat-raised-button color="primary">{{id?'Mettre à jour':'Confirmer'}}</button>
+      </mat-card-actions>
+    </dynamic-form>
+  </mat-card-content>
+</mat-card>

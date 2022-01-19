@@ -1,0 +1,42 @@
+query GetAllStockAdjustments {
+  stock_stock_adjustment {
+    id
+    ref
+    date
+    newQuantity
+    oldQuantity
+    reason
+    warehouse_substance {
+      substance {
+        id
+        type
+        productAccessory {
+          code
+          label
+          unit
+        }
+        productConsumable {
+          code
+          label
+          unit
+        }
+        productGlass {
+          code
+          label
+          unit
+        }
+      }
+      warehouse {
+        id
+        name
+        company {
+          name
+        }
+      }
+    }
+    userProfile {
+      username
+      role
+    }
+  }
+}

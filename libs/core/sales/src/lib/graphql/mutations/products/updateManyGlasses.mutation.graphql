@@ -1,0 +1,14 @@
+mutation UpdateGlassesJobOrderID($draft_id: Int, $isRepeated: Boolean = false) {
+  update_sales_glass_draft(
+    where: {
+      _and: {
+        product_draft: {
+          draft_id: { _eq: $draft_id }
+          isRepeated: { _eq: $isRepeated }
+        }
+      }
+    }
+  ) {
+    affected_rows
+  }
+}

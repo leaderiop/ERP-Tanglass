@@ -1,0 +1,46 @@
+<mat-toolbar class="p-0 mb-8" style='height: auto;background-color:transparent' *ngIf='routeParts.length'>
+  <div
+    class="breadcrumb-bar p-0"
+    *ngIf="
+      layout.layoutConf.useBreadcrumb &&
+      layout.layoutConf.breadcrumb === 'simple'
+    "
+  >
+    <ul class="breadcrumb p-0">
+      <li class='p-0'>
+        <a routerLink="/">
+          <mat-icon class='align-icons'> home </mat-icon>
+        </a>
+      </li>
+      <li *ngFor="let part of routeParts">
+        <a *ngIf='!part.noLink; else plain' routerLink="/{{ part.url }}">
+          {{ part.breadcrumb }}
+        </a>
+        <ng-template #plain>
+          <a>
+            {{ part.breadcrumb }}
+          </a>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+
+<!--  <div-->
+<!--    class="breadcrumb-title p-0"-->
+<!--    *ngIf="-->
+<!--      layout.layoutConf.useBreadcrumb &&-->
+<!--      layout.layoutConf.breadcrumb === 'title'-->
+<!--    "-->
+<!--  >-->
+<!--    <h1 class="bc-title">-->
+<!--      {{ routeParts[routeParts.length - 1]?.breadcrumb }}-->
+<!--    </h1>-->
+<!--    <ul class="breadcrumb" *ngIf="routeParts.length > 1">-->
+<!--      <li *ngFor="let part of routeParts">-->
+<!--        <a routerLink="/{{ part.url }}" class="text-muted">{{-->
+<!--          part.breadcrumb-->
+<!--        }}</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+</mat-toolbar>

@@ -1,0 +1,11 @@
+<ngx-fiche-card [title]="title"
+                [data]="passedData">
+  <ngx-main-grid  [columnId]="columnId"
+                 [withToolbar]="true"
+                 [withCrud]="true"
+                 (triggerEvent)="eventTriggering($event)"
+                 [rowData]="services$"
+                 [columnDefs]="columnDefs">
+  </ngx-main-grid>
+
+</ngx-fiche-card>

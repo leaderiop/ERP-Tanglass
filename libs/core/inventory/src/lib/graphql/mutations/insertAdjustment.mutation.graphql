@@ -1,0 +1,74 @@
+mutation InsertStockAdjustment(
+  $oldQuantity: Float
+  $newQuantity: Float
+  $substance_id: uuid!
+  $warehouse_id: uuid!
+  $reason: stock_adjustment_reasons_enum = inventaire
+  $note: String
+  $update_columns: [stock_warehouse_substance_update_column!] = quantity
+  $createdBy: String
+) {
+  insert_stock_warehouse_substance_one(
+    object: {
+      warehouseid: $warehouse_id
+      substanceid: $substance_id
+      quantity: $newQuantity
+      stock_adjustments: {
+        data: {
+          newQuantity: $newQuantity
+          note: $note
+          oldQuantity: $oldQuantity
+          reason: $reason
+          createdBy: $createdBy
+        }
+        on_conflict: { constraint: stock_adjustment_pkey, update_columns: id }
+      }
+    }
+    on_conflict: {
+      constraint: warehouse_subsctance_pkey
+      update_columns: $update_columns
+    }
+  ) {
+    quantity
+    quantity_min
+    quantity_planned
+    stock_adjustments {
+      id
+      ref
+      date
+      newQuantity
+      oldQuantity
+      reason
+      userProfile {
+        username
+        role
+      }
+    }
+    substance {
+      id
+      type
+      productAccessory {
+        code
+        label
+        unit
+      }
+      productConsumable {
+        code
+        label
+        unit
+      }
+      productGlass {
+        code
+        label
+        unit
+      }
+    }
+    warehouse {
+      id
+      name
+      company {
+        name
+      }
+    }
+  }
+}

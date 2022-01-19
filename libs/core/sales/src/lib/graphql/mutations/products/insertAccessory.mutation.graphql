@@ -1,0 +1,49 @@
+mutation InsertAccessoryDraft(
+  $warehouse_id: uuid, 
+  $company_id: uuid, 
+  $company_name: String, 
+  $label: String, 
+  $price: numeric, 
+  $product_code: String, 
+  $quantity: numeric, 
+  $total_price: numeric, 
+  $type: sales_product_type_enum, 
+  $unit: String, $draft_id: Int, 
+  $substance_id: uuid 
+  ) {
+  insert_sales_accessory_draft_one(object: 
+  {
+    product_draft: 
+    {data: 
+    {
+      company_id: $company_id, 
+      warehouse_id: $warehouse_id, 
+      company_name: $company_name, 
+      label: $label, price: $price, 
+      product_code: $product_code, 
+      quantity: $quantity, 
+      total_price: $total_price, 
+      type: $type, unit: $unit, 
+      draft_id: $draft_id, 
+      substance_id: $substance_id
+      }}}) {
+    id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+      substance_id
+      warehouse_id
+    }
+  }
+}

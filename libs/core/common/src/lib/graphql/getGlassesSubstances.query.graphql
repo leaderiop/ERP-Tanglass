@@ -1,0 +1,15 @@
+query GetGlassesSubstances($id: uuid!) {
+  stock_warehouse_substance(where: {warehouseid: {_eq: $id}, substance: {type: {_eq: glass}}}) {
+    quantity
+    substance {
+      productGlass {
+        code
+        label
+        substanceid
+        unit
+      }
+    }
+  }
+}
+
+

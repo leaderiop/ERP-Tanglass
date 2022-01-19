@@ -1,0 +1,16 @@
+<mat-toolbar class="header-info"> Les bons de livraisons </mat-toolbar>
+<mat-accordion class="accordion-headers mx-12">
+  <mat-expansion-panel class="example-headers-align mx-12 px-12" *ngFor="let data of dataToShow; index as index">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="font-weight-bolder">
+        Bon de livraison {{index+1}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-icon color="primary" fontSet="fas" fontIcon="fa-file-invoice">
+        </mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ngx-list-item [data]="data"></ngx-list-item>
+
+  </mat-expansion-panel>
+</mat-accordion>

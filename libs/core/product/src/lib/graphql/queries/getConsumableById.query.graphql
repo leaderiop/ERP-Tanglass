@@ -1,0 +1,22 @@
+query GetConsumableById($id: uuid!) {
+  product_consumable_by_pk(id: $id) {
+    category
+    createdAt
+    createdBy
+    id
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+     companies {
+        name
+        id
+      }
+    }
+    updatedAt
+    updatedBy
+  }
+}

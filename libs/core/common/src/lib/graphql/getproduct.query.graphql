@@ -1,0 +1,10 @@
+query GetProducts {
+  product_product(where: {_not: {consumable: {category: {_eq: MP}}}}) {
+    code
+    label
+    price
+    priceMax
+    priceMin
+    unit
+  }
+}

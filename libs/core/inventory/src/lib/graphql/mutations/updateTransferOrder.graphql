@@ -1,0 +1,32 @@
+mutation UpdateTransferOrder(
+  $id: Int!
+  $date: date
+  $deadline: date
+  $fromWarehouseid: uuid
+  $status: String
+  $toWarehouseid: uuid
+) {
+  update_stock_transfer_order_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      date: $date
+      deadline: $deadline
+      fromWarehouseid: $fromWarehouseid
+      status: $status
+      toWarehouseid: $toWarehouseid
+    }
+  ) {
+    date
+    deadline
+    fromwarehouse {
+      name
+      id
+    }
+    towarehouse {
+      name
+      id
+    }
+    status
+    id
+  }
+}

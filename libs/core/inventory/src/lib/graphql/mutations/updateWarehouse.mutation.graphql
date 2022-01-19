@@ -1,0 +1,14 @@
+mutation UpdateWarehouse($id: uuid!, $companyid: uuid!, $name: String!, $salesPointid: uuid) {
+  update_stock_warehouse_by_pk(pk_columns: {id: $id}, _set: {companyid: $companyid, name: $name, salesPointid: $salesPointid}) {
+    name
+    id
+    company {
+      name
+      id
+    }
+    salesPoint {
+      name
+      id
+    }
+  }
+}

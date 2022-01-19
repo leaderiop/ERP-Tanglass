@@ -1,0 +1,11 @@
+mutation changeNotificationState($objects: [notification_notification_status_insert_input!]!) {
+  insert_notification_notification_status(
+    objects: $objects
+    on_conflict: {
+      constraint: notification_status_notification_id_user_id_key
+      update_columns: [hide, read]
+    }
+  ) {
+    affected_rows
+  }
+}

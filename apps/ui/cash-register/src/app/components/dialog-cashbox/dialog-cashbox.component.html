@@ -1,0 +1,6 @@
+<ngx-dialog-body [title]="title">
+  <dynamic-form [fields]="regConfig"
+                (close)="closePopup()"
+                (submit)="submit($event)">
+  </dynamic-form>
+</ngx-dialog-body>

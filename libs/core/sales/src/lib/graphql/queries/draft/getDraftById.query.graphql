@@ -1,0 +1,23 @@
+query GetDraftById($id: Int!) {
+  sales_draft_by_pk(id: $id) {
+    date
+    id
+    status
+    product_drafts {
+      id
+      product_code
+      label
+      quantity
+      m2
+      ml
+      unit
+      width
+      heigth
+      price
+      total_price
+      company_name
+      delivered
+    }
+
+  }
+}

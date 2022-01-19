@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+@import '~ag-grid-enterprise/dist/styles/ag-grid.css';
+@import '~ag-grid-enterprise/dist/styles/ag-theme-alpine.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+// // Bootstrap Utility Classes
+@import 'bootstrap-utilities/bootstrap-utilities';
+@import 'utilities/spacing';
+@import 'colors';
+@import 'palette';
+
+.panel-dialog .mat-dialog-container {
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0;
+  max-height: 100%;
+  overflow: auto;
+}
+
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.mat-row:hover {
+  background-color: #f3f2f2;
+}
+
+.mat-icon {
+  font-size: 24px;
+}
+
+.excel {
+  color: green;
+}
+
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.model div {
+  padding: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

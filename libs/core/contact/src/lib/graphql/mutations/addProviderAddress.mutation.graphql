@@ -1,0 +1,15 @@
+mutation AddProviderAddress(
+  $address: contact_address_insert_input!
+  $id: uuid
+) {
+  insert_contact_provider_address_one(
+    object: { address: { data: $address }, providerid: $id }
+  ) {
+    address {
+      address
+      city
+      id
+      zip
+    }
+  }
+}

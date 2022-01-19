@@ -1,0 +1,28 @@
+query getDeliveriesBy($date: date_comparison_exp, $status: String_comparison_exp) {
+  sales_delivery(where: {createdAt: $date, status: $status}) {
+    id
+    order_id
+    status
+    company{
+      name
+    }
+    payment_method
+    predicted_date
+    isReturned
+    client {
+      name
+      mail
+    }
+    contact {
+      mail
+      name
+      phone
+    }
+    amount_ttc
+    amount_tva
+    amount_ht
+    ref
+    createdAt
+    updated_at
+  }
+}

@@ -1,0 +1,10 @@
+query GetAllProviders {
+  contact_provider {
+    id
+    code
+    name
+    note
+    phone
+    mail
+  }
+}

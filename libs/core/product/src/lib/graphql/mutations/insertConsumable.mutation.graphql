@@ -1,0 +1,27 @@
+mutation InsertConsumable(
+  $product: product_product_insert_input!,
+  $category: product_consumableCategory_enum,
+  $substance: product_substance_insert_input! = {type: consumable},
+  $labelFactory : String) {
+  insert_product_consumable_one(object: {
+    product: {data: $product},
+    category: $category,
+    substance: {
+      data: $substance},
+    labelFactory : $labelFactory }) {
+    id
+    product {
+      code
+      label
+      price
+      unit
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    category
+  }
+}

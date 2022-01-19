@@ -1,0 +1,22 @@
+<mat-card class="card">
+  <mat-toolbar
+    *ngIf="withToolbar"
+    class="mat-elevation-z15"
+    style="height: 60px"
+    color="primary"
+  >
+    <h4 style="text-align: center">{{ title }}</h4>
+  </mat-toolbar>
+
+  <ng-content select="[top]"></ng-content>
+  <mat-card-content class="card-content">
+    <ngx-list-item
+      *ngIf="data && data.length"
+      [data]="data"
+      (triggerEvent)="eventTriggering($event)"
+    >
+    </ngx-list-item>
+
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>

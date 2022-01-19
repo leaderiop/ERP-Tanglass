@@ -1,0 +1,9 @@
+query GetWarehouseSubstance {
+  stock_warehouse_substance {
+    quantity
+    quantity_min
+    quantity_planned
+    substanceid
+    warehouseid
+  }
+}

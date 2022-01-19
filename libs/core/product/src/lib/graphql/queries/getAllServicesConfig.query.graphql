@@ -1,0 +1,9 @@
+query GetAllServiceConfig {
+  product_serviceConfig {
+    labelFactory
+    name
+    id
+    params
+  }
+}
+

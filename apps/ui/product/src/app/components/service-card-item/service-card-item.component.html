@@ -1,0 +1,39 @@
+<ng-container *ngTemplateOutlet="highlighted"> </ng-container>
+
+<ng-template #highlighted>
+  <mat-card appHighlight matRipple class="mat-elevation-z5">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </mat-card>
+</ng-template>
+
+<ng-template #nohighlighted>
+  <mat-card class="mat-elevation-z5">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </mat-card>
+</ng-template>
+
+<ng-template #content>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon style="font-size: 2.5rem; display: inline-block" class="mr-24">
+        miscellaneous_services
+      </mat-icon>
+    </div>
+    <mat-card-title>{{ data.name.substr(0, 2) | uppercase }}</mat-card-title>
+    <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions
+    *ngIf="showActions"
+    align="end"
+    class="m-0 p-0"
+    (click)="$event.stopPropagation()"
+  >
+    <button mat-icon-button color="accent" (click)="updateEvent.emit(data)">
+      <mat-icon> edit </mat-icon>
+    </button>
+
+    <button mat-icon-button color="warn" (click)="deleteEvent.emit(data.id)">
+      <mat-icon> delete </mat-icon>
+    </button>
+  </mat-card-actions>
+</ng-template>

@@ -1,0 +1,5 @@
+mutation deleteService($id: uuid!) {
+  delete_product_serviceConfig_by_pk(id: $id) {
+    id
+  }
+}

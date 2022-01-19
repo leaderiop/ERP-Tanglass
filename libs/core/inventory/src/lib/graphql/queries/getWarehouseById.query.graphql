@@ -1,0 +1,18 @@
+query GetWarehouseById($id: uuid!) {
+  stock_warehouse_by_pk(id: $id) {
+    id
+    name
+    salesPoint {
+      name
+      id
+    }
+    company {
+      name
+      id
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+  }
+}

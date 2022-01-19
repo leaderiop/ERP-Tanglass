@@ -1,0 +1,23 @@
+query GetProductsByType($draft_id: Int!, $type: sales_product_type_enum) {
+  sales_product_draft(where: {draft_id: {_eq: $draft_id}, type: {_eq: $type}}) {
+    company_id
+    company_name
+    draft_id
+    heigth
+    id
+    label
+    m2
+    ml
+    price
+    product_code
+    quantity
+    total_price
+    type
+    unit
+    width
+    glass_draft {
+      id
+    }
+  }
+}
+

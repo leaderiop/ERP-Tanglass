@@ -1,0 +1,88 @@
+mutation InsertBisItem($glasses: [sales_glass_draft_insert_input!]!) {
+  insert_sales_glass_draft(objects: $glasses) {
+    returning {
+      id
+      product_draft {
+        company_name
+        heigth
+        id
+        label
+        m2
+        ml
+        price
+        product_code
+        quantity
+        total_price
+        type
+        unit
+        width
+        company_id
+        count
+        isRepeated
+        isLaunched
+        substance_id
+        warehouse_id
+        draft_id
+        glass_draft {
+          id
+        }
+        service_draft {
+          labelFactory
+          id
+          product_draft {
+            company_id
+            company_name
+            count
+            delivered
+            draft_id
+            heigth
+            id
+            isLaunched
+            isRepeated
+            label
+            m2
+            ml
+            price
+            product_code
+            quantity
+            status
+            substance_id
+            total_price
+            type
+            unit
+            warehouse_id
+            width
+          }
+        }
+        consumable_draft {
+          id
+          labelFactory
+          product_draft {
+            company_id
+            company_name
+            count
+            delivered
+            draft_id
+            heigth
+            id
+            isLaunched
+            isRepeated
+            label
+            m2
+            ml
+            price
+            product_code
+            quantity
+            status
+            substance_id
+            type
+            total_price
+            unit
+            warehouse_id
+            width
+          }
+        }
+      }
+    }
+  }
+}

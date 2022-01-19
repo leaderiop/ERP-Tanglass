@@ -1,0 +1,39 @@
+<div fxFlexFill="" style="min-width: 100%; width: 100%">
+  <div
+    fxLayout="row wrap"
+    fxFlexFill=""
+    fxLayoutGap="20px grid"
+    class="mt-8"
+    class="pl-20"
+    fxLayoutAlign="start center"
+  >
+    <ngx-service-card-item
+      fxFlex.gt-lg="0 1 15%"
+      fxFlex.gt-md="0 1 25%"
+      fxFlex.gt-sm="0 1 30%"
+      fxFlex.gt-xs="0 1 50%"
+      fxFlex.xs="0 1 100%"
+      fxFlex="0 1 100%"
+      class="mb-8"
+      style="box-sizing: border-box"
+      [showActions]='viewActions'
+      [data]="item"
+      [routerLink]="[item?.id]"
+      [state]="{ id: item?.id }"
+      *ngFor="let item of data$ | async"
+      (deleteEvent)="deleteEvent($event)"
+      (updateEvent)="updateEvent($event)"
+    >
+    </ngx-service-card-item>
+  </div>
+</div>
+
+<span class="fab-button">
+<button class="mr-12" (click)="viewActions=!viewActions" mat-fab color="primary">
+  <mat-icon>list</mat-icon>
+</button>
+
+<button (click)="openDialog('add')" mat-fab color="primary">
+  <mat-icon fontSet="fas" fontIcon="fa-plus"></mat-icon>
+</button>
+</span>

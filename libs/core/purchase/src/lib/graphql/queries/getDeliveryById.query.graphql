@@ -1,0 +1,30 @@
+query GetPurchaseDeliveryById($id: Int!) {
+  purchase_delivery_by_pk(id: $id) {
+    date
+    id
+    ref
+    delivery_items {
+      code
+      delivery_id
+      id
+      label
+      quantity
+      substance_id
+      cost
+      unit
+      warehouse {
+        id
+        name
+        company {
+          name
+        }
+      }
+    }
+    provider {
+      id
+      code
+      name
+      phone
+    }
+  }
+}

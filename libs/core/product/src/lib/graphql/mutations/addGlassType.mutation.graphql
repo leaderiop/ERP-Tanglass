@@ -1,0 +1,6 @@
+
+mutation AddGlassType($type: String) {
+  insert_product_glassType_one(object: {type: $type}) {
+    type
+  }
+}

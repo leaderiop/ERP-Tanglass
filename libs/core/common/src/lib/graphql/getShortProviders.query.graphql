@@ -1,0 +1,6 @@
+query GetShortProviders {
+  contact_provider {
+    code
+    name
+  }
+}

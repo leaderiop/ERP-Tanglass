@@ -1,0 +1,38 @@
+<ngx-fiche-card [title]="title" >
+  <ngx-list-item [data]="passedData">
+    <ng-template typeTemplate="profiles">
+      <div fxLayout="row" style="width: 100%" *ngIf="data" >
+        <mat-accordion fxFlex.gt-lg="50" fxFlex="80" class="headers-align ml-12">
+          <mat-expansion-panel *ngFor="let item of data?.usersProfiles; index as i" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Profile d'utilisateur
+              </mat-panel-title>
+              <mat-panel-description>
+                {{item.firstname}} {{item.lastname}}
+                <mat-icon fontSet="fas" fontIcon="fa-user-circle"></mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-chip-list>
+              <mat-chip color="primary" selected>{{item?.active?'activé':'non activé'}}</mat-chip>
+            </mat-chip-list>
+            <div class="model" fxLayout="row wrap" fxLayoutAlign="start center">
+              <div fxFlex="30">Nom</div> <div fxFlex="70">{{item.lastname}}</div>
+              <div fxFlex="30">Prénom</div> <div fxFlex="70">{{item.firstname}}</div>
+              <div fxFlex="30">Téléphone</div> <div fxFlex="70">{{item.phone}}</div>
+              <div fxFlex="30">Nom d'utilisateur</div> <div fxFlex="70">{{item.username}}</div>
+              <div fxFlex="30">Role</div> <div fxFlex="70">{{item?.user_role?.name}}</div>
+            </div>
+            <mat-action-row>
+              <button *ngIf="i>0" mat-button color="warn" (click)="prevStep()">Précédent</button>
+              <button *ngIf="i<(data?.usersProfiles.length-1)" mat-button color="primary" (click)="nextStep()">Suivant</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </ng-template>
+  </ngx-list-item>
+</ngx-fiche-card>
+
+

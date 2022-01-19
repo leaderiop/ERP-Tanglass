@@ -1,0 +1,11 @@
+query GetAllSalesPoints {
+  management_salesPoint {
+    address
+    email
+    fax
+    id
+    name
+    phone
+    isPrincipale
+  }
+}

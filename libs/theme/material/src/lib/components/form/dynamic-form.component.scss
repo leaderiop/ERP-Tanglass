@@ -1,0 +1,8 @@
+:host ::ng-deep .input-form {
+  flex: 0 1 50%;
+  box-sizing: border-box;
+
+  @media (max-width: 720px) {
+    flex: 0 1 100%;
+  }
+}

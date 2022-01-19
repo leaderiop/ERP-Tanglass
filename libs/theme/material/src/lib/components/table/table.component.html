@@ -1,0 +1,51 @@
+<!--<div class="m-2 mat-elevation-z8">-->
+  <mat-form-field class="w-50 m-12" *ngIf='withFilter'>
+    <input #filterInput matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Filtrer">
+    <button mat-icon-button matSuffix (click)="clearFilter(filterInput)"
+            [ngStyle]="filterInput.value === ''?{display: 'none'}:{}"
+            [attr.aria-label]="'Clear'">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-form-field>
+<br/>
+
+  <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="data">
+    <ng-container  *ngIf='withCheckbox'  matColumnDef="select" >
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="isAllSelected$ | async"
+                      [indeterminate]="indeterminate$| async">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+      <td   mat-footer-cell *matFooterCellDef> Total {{data?.length}}</td>
+      <ng-content #status></ng-content>
+    </ng-container>
+
+    <ng-container *ngFor="let col of columnsToShow; index as i" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{col.title}}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="col.type === column_type.normal; else template" >
+          {{getProperty(row, col.key)}}
+        </ng-container>
+
+        <ng-template #template>
+          <ng-container *ngTemplateOutlet="templates[col.key];
+          context: {data: col?.withRow?row:getProperty(row, col.key)}">
+          </ng-container>
+        </ng-template>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>

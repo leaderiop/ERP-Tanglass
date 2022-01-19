@@ -1,0 +1,7 @@
+mutation DeleteManyWarehouses($ids: [uuid!]) {
+  delete_stock_warehouse(where: {id: {_in: $ids}}) {
+    returning {
+      id
+    }
+  }
+}

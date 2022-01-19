@@ -1,0 +1,53 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" class='pr-16'>
+<!--  <ng-container >-->
+    <mat-card
+      *ngFor="let salepoint of salePoints$ | async"
+      class='p-12'
+      fxFlex="0 1 calc(100% - 16px)"
+      fxFlex.gt-md="0 1 calc(30% - 16px)"
+      fxFlex.sm="0 1 calc(50% - 16px)"
+      fxFlex.gt-lg="0 1 calc(20% - 16px)"
+      fxFlex.gt-xl="0 1 calc(15% - 16px)"
+    >
+      <mat-card-header>
+        <mat-card-title>
+          {{ salepoint.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          Caisse:
+          <ng-container *ngIf="salepoint.cash_boxes?.length; else withoutCashBox">
+          <span class="font-weight-bold">{{
+            salepoint.cash_boxes[0].name
+            }}</span>
+          </ng-container>
+          <ng-template #withoutCashBox>
+          <span class="mat-color-warn">
+            {{ WIHOUT_CASHBOX }}
+          </span>
+          </ng-template>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+        <button
+          *ngIf="salepoint.cash_boxes?.length; else createCashBox"
+          [routerLink]='salepoint.id + "/" + salepoint.cash_boxes[0].id'
+          [state]='{salePointName: salepoint.name}'
+          mat-raised-button
+          color="primary"
+        >
+          <mat-icon>launch</mat-icon> Entrer
+        </button>
+        <ng-template #createCashBox>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="openDialog(salepoint.name, salepoint.id)"
+          >
+            Créer <mat-icon>add</mat-icon>
+          </button>
+        </ng-template>
+      </mat-card-actions>
+    </mat-card>
+<!--  </ng-container>-->
+
+</div>

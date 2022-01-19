@@ -1,0 +1,5 @@
+mutation DeleteTransferOrders($ids: [Int!]) {
+  delete_stock_transfer_order(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

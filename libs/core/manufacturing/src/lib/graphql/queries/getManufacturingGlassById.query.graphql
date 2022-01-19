@@ -1,0 +1,40 @@
+query GetManufacturingGlassById($id: uuid!) {
+  sales_glass_draft_by_pk(id: $id) {
+    id
+    consumable_drafts {
+        dependent_id
+        labelFactory
+        id
+      }
+      service_drafts {
+        dependent_id
+        labelFactory
+        id
+      }
+      product_draft {
+        type
+        count
+        heigth
+        width
+        label
+        product_code
+      }
+      manufacturing_lines {
+        glass_id
+        id
+        status
+        manufacturing_services {
+          service_draft {
+            labelFactory
+            id
+          }
+        }
+        manufacturing_consumables {
+          consumable_draft {
+            labelFactory
+            id
+          }
+        }
+      }
+  }
+}

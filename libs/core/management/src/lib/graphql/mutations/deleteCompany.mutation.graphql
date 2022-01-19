@@ -1,0 +1,6 @@
+mutation DeleteCompany($id: uuid!) {
+  delete_management_company_by_pk(id: $id) {
+    name
+    id
+  }
+}

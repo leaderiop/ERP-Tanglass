@@ -1,0 +1,5 @@
+mutation updateQuotation($id: Int!, $params: sales_quotation_set_input) {
+  update_sales_quotation_by_pk(pk_columns: {id: $id}, _set: $params) {
+    id
+  }
+}

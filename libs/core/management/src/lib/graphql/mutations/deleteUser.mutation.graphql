@@ -1,0 +1,7 @@
+mutation DeleteUser($id: String!) {
+  delete_management_userProfile_by_pk(id: $id) {
+    username
+    id
+  }
+}
+

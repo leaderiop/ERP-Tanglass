@@ -1,0 +1,30 @@
+query GetProviderById($id: uuid!) {
+  contact_provider_by_pk(id: $id) {
+    id
+    code
+    name
+    note
+    phone
+    mail
+    FAX
+    website
+    contacts {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    createdAt
+    createdBy
+    updatedAt
+    updatedBy
+  }
+}

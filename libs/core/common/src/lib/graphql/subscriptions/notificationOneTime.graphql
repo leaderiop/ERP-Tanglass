@@ -1,0 +1,30 @@
+query NotificationQuery(
+  $user_id: String
+  $role: management_user_role_enum
+) {
+  notification_notification(
+    where: {
+      _or: [
+        { role: { _eq: $role } }
+        { user_id: { _eq: $user_id } }
+        { role: { _is_null: true }, user_id: { _is_null: true } }
+      ]
+    }
+  ) {
+    id
+    message
+    priority
+    route
+    ref
+    role
+    subject
+    createdAt
+    title
+    user_id
+    notification_status(where: { user_id: { _eq: $user_id } }) {
+      id
+      read
+      hide
+    }
+  }
+}

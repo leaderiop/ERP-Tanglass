@@ -1,0 +1,5 @@
+mutation insertCashBox($name: String!, $salepoint_id: uuid!) {
+  insert_cash_register_cash_box_one(object: {name: $name, salepoint_id: $salepoint_id}) {
+    id
+  }
+}

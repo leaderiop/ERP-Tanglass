@@ -1,0 +1,24 @@
+query DashboardQuery($date1: date, $date2: date) {
+  contact_customer_aggregate {
+    aggregate {
+      count
+    }
+  }
+  management_userProfile_aggregate {
+    aggregate {
+      count
+    }
+  }
+  stock_transfer_order_aggregate(where: {status: {_eq: "En attente"}}) {
+    aggregate {
+      count
+    }
+  }
+  sales_order_aggregate(where: {date: {_gte: $date1, _lte: $date2}}) {
+    aggregate {
+      sum {
+        total_ttc
+      }
+    }
+  }
+}

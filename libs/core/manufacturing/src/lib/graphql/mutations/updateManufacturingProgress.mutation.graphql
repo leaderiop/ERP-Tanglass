@@ -1,0 +1,33 @@
+mutation UpdateManufacturingProgress($services: [manufacturing_manufacturing_service_insert_input!]! = [], $consumables: [manufacturing_manufacturing_consumable_insert_input!]! = [], $glass_id: uuid) {
+  delete_manufacturing_manufacturing_service(where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}) {
+    affected_rows
+  }
+    delete_manufacturing_manufacturing_consumable(where: {manufacturing_line: {glass_draft: {id: {_eq: $glass_id}}}}) {
+    affected_rows
+  }
+  insert_manufacturing_manufacturing_service(objects: $services, on_conflict: {constraint: manufacturing_service_pkey, update_columns: service_draft_id}) {
+    returning {
+      manufacturing_line_id
+      service_draft_id
+      service_draft {
+        labelFactory
+      }
+      manufacturing_line {
+        status
+      }
+    }
+  }
+  insert_manufacturing_manufacturing_consumable(objects: $consumables, on_conflict: {constraint: manufacturing_consumable_pkey, update_columns: consumable_draft_id}) {
+    returning {
+      consumable_draft_id
+      manufacturing_line_id
+      consumable_draft {
+        labelFactory
+      }
+      manufacturing_line {
+        status
+      }
+    }
+  }
+
+}

@@ -1,0 +1,19 @@
+query GeShortSalePoints($ids: uuid_comparison_exp) {
+  management_salesPoint(where: { id: $ids }) {
+    name
+    id
+    isPrincipale
+    cash_boxes {
+      id
+      name
+    }
+    warehouses {
+      name
+      id
+      companyid
+      company {
+        name
+      }
+    }
+  }
+}

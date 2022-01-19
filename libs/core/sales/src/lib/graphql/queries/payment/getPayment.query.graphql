@@ -1,0 +1,16 @@
+query GetPayment($order_id: Int!) {
+  sales_payment(where: {order_id: {_eq: $order_id}}) {
+    amount
+    company {
+      name
+      id
+    }
+    customer_id
+    date
+    deadline
+    id
+    payment_method
+    order_id
+  }
+}
+

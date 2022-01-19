@@ -1,0 +1,16 @@
+
+mutation UpdateUser($CIN: String, $SalesPointsid: uuid, $active: Boolean = true, $email: String, $firstname: String, $lastname: String, $phone: String, $username: String, $role: management_user_role_enum = admin, $id: String!) {
+  update_management_userProfile_by_pk(pk_columns: {id: $id}, _set: {CIN: $CIN, SalesPointsid: $SalesPointsid, active: $active, email: $email, firstname: $firstname, lastname: $lastname, phone: $phone, username: $username, role: $role}) {
+    CIN
+    active
+    firstname
+    id
+    email
+    lastname
+    phone
+    username
+    SalesPointsid
+    role
+  }
+}
+

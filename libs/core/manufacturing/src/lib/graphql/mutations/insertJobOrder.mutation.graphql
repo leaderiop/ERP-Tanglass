@@ -1,0 +1,68 @@
+mutation InsertJobOrder(
+  $order_ref: String
+  $isReparing: Boolean = false
+  $ids: [sales_glass_draft_insert_input!]!
+) {
+  insert_manufacturing_job_order_one(
+    object: {
+      order_ref: $order_ref
+      isReparing: $isReparing
+      glass_drafts: {
+        data: $ids
+        on_conflict: {
+          constraint: glass_draft_pkey
+          update_columns: job_order_id
+        }
+      }
+    }
+  ) {
+    id
+    order_ref
+    status
+    isReparing
+    date
+    ref
+    glass_drafts {
+      id
+      product_draft {
+        type
+        count
+        heigth
+        width
+        label
+        product_code
+      }
+      consumable_drafts {
+        labelFactory
+        id
+      }
+      service_drafts {
+        id
+        labelFactory
+      }
+      manufacturing_lines {
+        glass_id
+        id
+        status
+        ref
+      }
+    }
+  }
+  update_sales_product_draft(
+    _set: { isLaunched: true }
+    where: {
+      _and: {
+        draft: { order: { ref: { _eq: $order_ref } } }
+        type: { _nin: [Accessoire] }
+      }
+    }
+  ) {
+    affected_rows
+  }
+  update_sales_draft(
+    where: { order: { ref: { _eq: $order_ref } } }
+    _set: { status: lance }
+  ) {
+    affected_rows
+  }
+}

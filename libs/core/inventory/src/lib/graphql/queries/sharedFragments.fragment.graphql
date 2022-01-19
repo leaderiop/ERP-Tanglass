@@ -1,0 +1,19 @@
+fragment stock_warehouseFragment on stock_warehouse {
+  name
+  id
+  company {
+    name
+    id
+  }
+   salesPoint {
+    name
+    id
+  }
+}
+
+fragment product_productFragment on product_product {
+  code
+  label
+  unit
+  price
+}

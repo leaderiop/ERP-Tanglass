@@ -1,0 +1,132 @@
+<mat-toolbar style="background-color: transparent">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon color="primary">auto_awesome_mosaic</mat-icon>
+  </button>
+  <span>Verre | Article Client</span>
+  <span class="example-spacer"></span>
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    (click)="addService()"
+    mat-flat-button
+    color="primary"
+    style="width: 12em; margin-right: 8px"
+  >
+    Ajouter service/cons
+  </button>
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    (click)="addGlass()"
+    mat-flat-button
+    color="primary"
+    style="width: 12em"
+  >
+    Ajouter Verre
+  </button>
+</mat-toolbar>
+
+<app-table
+  #glassTable
+  [data]="dataSourceGlass"
+  [templates]="{ action: action }"
+  [withFilter]="false"
+  [columnsToShow]="glassesColumns"
+>
+</app-table>
+
+<ng-template #action let-item="data">
+  <!-- <button *ngIf="!isCardMode" mat-stroked-button (click)="openDialog('Add', 'Service', [item])" color="primary"
+    style="margin-right: 2em">
+    <mat-icon>add_circle</mat-icon>
+    service
+  </button> -->
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    mat-stroked-button
+    color="primary"
+    (click)="delete(item)"
+  >
+    <mat-icon>delete</mat-icon>
+    delete
+  </button>
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    mat-stroked-button
+    color="primary"
+    (click)="deleteDependencies(item)"
+  >
+    <mat-icon>delete_sweep</mat-icon>
+    delete
+  </button>
+  <button
+    *ngIf="!isCardMode && isLaunched"
+    mat-stroked-button
+    color="primary"
+    (click)="addRepair(item)"
+  >
+    <mat-icon>filter_none</mat-icon>
+    Bis
+  </button>
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    mat-stroked-button
+    color="primary"
+    (click)="edit(item)"
+  >
+    <mat-icon>edit</mat-icon>
+    Edit
+  </button>
+</ng-template>
+
+<mat-toolbar style="background-color: transparent">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon color="primary">miscellaneous_services</mat-icon>
+  </button>
+  <span>Services | Consommables| Accessoires</span>
+  <span class="example-spacer"></span>
+  <button
+    *ngIf="!isCardMode && !isLaunched"
+    (click)="addAccessory()"
+    mat-flat-button
+    color="primary"
+    style="width: 12em"
+  >
+    Ajouter accessoire
+  </button>
+</mat-toolbar>
+
+<app-table
+  #articlesTable
+  [data]="dataSourceArticles"
+  [templates]="{ action: action2 }"
+  [columnsToShow]="displayedColumns"
+  [withCheckbox]="false"
+  [withFilter]="false"
+>
+</app-table>
+
+<ng-template #action2 let-item="data">
+  <button
+    *ngIf="!isCardMode && !item?.dependent_id && !isLaunched"
+    mat-stroked-button
+    color="primary"
+    (click)="delete(item)"
+  >
+    <mat-icon
+      color="primary"
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example delete icon"
+    >
+      delete
+    </mat-icon>
+    delete
+  </button>
+</ng-template>

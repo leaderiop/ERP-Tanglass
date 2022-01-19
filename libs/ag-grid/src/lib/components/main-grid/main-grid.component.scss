@@ -1,0 +1,10 @@
+.spacer {
+  flex: 1 1 auto;
+}
+ag-grid-angular, .mat-toolbar {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.mat-toolbar {
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+}

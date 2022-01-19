@@ -1,0 +1,9 @@
+mutation InsertServiceConfig($labelFactory: String, $name: String, $params: jsonb ) {
+  insert_product_serviceConfig_one(object: {labelFactory: $labelFactory, name: $name,
+    params: $params}) {
+    labelFactory
+    name
+    id
+    params
+  }
+}

@@ -1,0 +1,31 @@
+mutation InsertAccessory(
+  $product: product_product_insert_input!
+  $quota: numeric
+  $category: product_accessoryTypes_enum = ACCESSOIRE
+  $subctance: product_substance_insert_input! = { type: accessory }
+) {
+  insert_product_accessory_one(
+    object: {
+      product: { data: $product }
+      quota: $quota
+      category: $category
+      substance: { data: $subctance }
+    }
+  ) {
+    id
+    category
+    quota
+    product {
+      code
+      label
+      unit
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+  }
+}

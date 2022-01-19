@@ -1,0 +1,21 @@
+<ngx-fiche-card title="Profile">
+  <mat-list class="inline-list" role="list" *ngIf="auth.user$ | async as user">
+    <img *ngIf="user?.picture" matListAvatar [src]="user?.picture" alt="profile_photo">
+    <ng-container *ngFor="let item of fieldsToShow">
+      <ng-container *ngTemplateOutlet="list_item; context: { data: [item[0], user[item[1]]]}">
+      </ng-container>
+    </ng-container>
+    <ng-container *ngTemplateOutlet="list_item; context: { data: ['Dernière mise à jour', user.updated_at | date: 'short': '': 'fr'] }">
+    </ng-container>
+
+    <ng-template #list_item let-item="data">
+      <mat-list-item class="list-item" role="listitem">
+        <h3 matLine class="font-weight-bold mat-color-primary">{{ item[0] }}</h3>
+        <p matLine>
+          {{ item[1] }}
+        </p>
+        <mat-divider class="w-80"></mat-divider>
+      </mat-list-item>
+    </ng-template>
+  </mat-list>
+</ngx-fiche-card>

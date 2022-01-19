@@ -1,0 +1,6 @@
+query WarehouseOnetime {
+  stock_warehouse {
+    id
+    name
+  }
+}

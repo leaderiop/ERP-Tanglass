@@ -1,0 +1,52 @@
+<div class="container">
+
+  <mat-toolbar style='background-color:transparent ;padding: 0px;'>
+    <span>Dimensions!</span>
+    <span class="example-spacer"></span>
+    <button type="button" mat-flat-button (click)="addItem()" color="primary" >
+        Ajouter
+    </button>
+</mat-toolbar>
+  <form [formGroup]="dimensionsForm">
+    <div formArrayName="dimensions" *ngFor="let dimension of dimensions.controls; let i = index" class='row'>
+      <div [formGroupName]="i">
+        <div fxLayout="row" fxLayoutGap="15px">
+          <div fxLayoutAlign="center center" fxFlex="33">
+            <mat-form-field class="form-element">
+              <mat-label for="width">Largeur</mat-label>
+              <input matInput type="number" name="width" formControlName="width">
+              <mat-error *ngIf="!form?.controls['width']?.valid && form?.controls['width']?.touched">
+                {{ titleAlert }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center center" fxFlex="33">
+            <mat-form-field class="form-element">
+              <mat-label for="heigth">Hauteur</mat-label>
+              <input matInput type="number" name="heigth" formControlName="heigth">
+              <mat-error *ngIf="!form?.controls['heigth']?.valid && form?.controls['heigth']?.touched">
+                {{ titleAlert }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center center" fxFlex="33">
+            <mat-form-field class="form-element">
+              <mat-label for="count">N° de piéces</mat-label>
+              <input matInput type="number" name="count " formControlName="count">
+              <mat-error *ngIf="!form?.controls['count']?.valid && form?.controls['count']?.touched">
+                {{ titleAlert }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center right" fxFlex="8">
+            <button mat-icon-button type="button" color="primary" (click)="removeItem(i)">
+              <mat-icon>backspace</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+

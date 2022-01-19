@@ -1,0 +1,23 @@
+query GetAccessoryById($id: uuid!) {
+  product_accessory_by_pk(id: $id) {
+    createdAt
+    createdBy
+    id
+    category
+    product {
+      code
+      unit
+      label
+      price
+      priceMax
+      priceMin
+      companies {
+        name
+        id
+      }
+    }
+    quota
+    updatedAt
+    updatedBy
+  }
+}

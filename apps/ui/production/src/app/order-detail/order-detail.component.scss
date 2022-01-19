@@ -1,0 +1,43 @@
+p {
+    font-size: 12pt;
+}
+
+.items-group {
+    border-style: solid;
+    border-color: black;
+    border-width: 1pt 1pt 1pt 1pt;
+    border-radius: 5pt;
+    padding: 3pt 3pt 3pt 3pt;
+    margin: 9pt 0 9pt 0;
+}
+
+
+
+.label {
+    font-weight: 500;
+}
+
+.disclaimer,
+.address p {
+    font-size: 10pt;
+}
+
+
+:host /deep/ [nbButton].shape-rectangle {
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    margin-right: 10px;
+}
+
+
+.center {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;}
+
+
+   .addSpace{
+
+    margin: 5px !important;
+   }
+

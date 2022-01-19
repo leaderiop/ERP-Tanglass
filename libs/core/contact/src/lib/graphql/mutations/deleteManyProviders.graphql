@@ -1,0 +1,7 @@
+mutation DeleteManyProviders($ids: [uuid!]) {
+  delete_contact_provider(where: { id: { _in: $ids } }) {
+    returning {
+      id
+    }
+  }
+}

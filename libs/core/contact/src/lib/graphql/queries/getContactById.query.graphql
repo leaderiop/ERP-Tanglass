@@ -1,0 +1,38 @@
+
+
+query GetContactById($id: uuid!) {
+  contact_contact_by_pk(id: $id) {
+    id
+    code
+    mail
+    name
+    phone
+    note
+    addresses {
+      id
+      address
+      city
+      zip
+    }
+    cutomers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    providers {
+      id
+      code
+      name
+      phone
+      mail
+      note
+    }
+    createdAt
+    createdBy
+    updatedBy
+    updatedAt
+  }
+}

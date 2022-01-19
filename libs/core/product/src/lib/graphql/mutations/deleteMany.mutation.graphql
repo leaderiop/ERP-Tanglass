@@ -1,0 +1,5 @@
+mutation DeleteMany($codes: [String!]) {
+  delete_product_product(where: {code: {_in: $codes}}) {
+    affected_rows
+  }
+}

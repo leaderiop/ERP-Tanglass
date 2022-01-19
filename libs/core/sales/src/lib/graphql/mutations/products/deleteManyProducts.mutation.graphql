@@ -1,0 +1,5 @@
+mutation DeleteProducts($ids: [uuid!]!=[]) {
+  delete_sales_product_draft(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

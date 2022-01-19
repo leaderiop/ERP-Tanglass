@@ -1,0 +1,9 @@
+mutation DeleteCustomerContact($contactid: uuid!, $id: uuid!) {
+  delete_contact_customer_contact_by_pk(
+    contactid: $contactid
+    customerid: $id
+  ) {
+    contactid
+    customerid
+  }
+}

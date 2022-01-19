@@ -1,0 +1,23 @@
+query GetAllWarehouses {
+  stock_warehouse {
+    id
+    name
+    
+    company {
+      ...management_companyFragment
+    }
+    salesPoint {
+      ...management_salesPointFragment
+    }
+  }
+}
+
+fragment management_salesPointFragment on management_salesPoint {
+  name
+  id
+}
+
+fragment management_companyFragment on management_company {
+  name
+  id
+}

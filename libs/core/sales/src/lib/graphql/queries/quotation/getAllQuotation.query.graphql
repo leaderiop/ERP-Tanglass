@@ -1,0 +1,27 @@
+query GetAllQuotations($dateStart: date, $dateEnd: date)  {
+  sales_quotation(where: {date: {_gte: $dateStart, _lte: $dateEnd}}) {
+      company {
+        name
+        id
+      }
+      customer {
+        code
+        id
+        name
+        phone
+      }
+      status
+      id
+      ref
+      total_ht
+      total_tax
+      total_ttc
+      date
+      deadline
+      draft_id
+      contact_id
+      salepoint {
+        name
+      }
+    }
+  }

@@ -1,0 +1,5 @@
+mutation deleteInvoices($ids: [uuid!]!=[]) {
+  delete_sales_invoice(where: {id: {_in: $ids}}) {
+    affected_rows
+  }
+}

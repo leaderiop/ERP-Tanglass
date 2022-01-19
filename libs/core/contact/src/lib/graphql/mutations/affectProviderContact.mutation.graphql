@@ -1,0 +1,16 @@
+mutation AffectProviderContact(
+  $affectedContacts: [contact_provider_contact_insert_input!]!
+) {
+  insert_contact_provider_contact(objects: $affectedContacts) {
+    returning {
+      contact {
+        code
+        id
+        mail
+        name
+        note
+        phone
+      }
+    }
+  }
+}

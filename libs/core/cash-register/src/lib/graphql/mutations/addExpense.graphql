@@ -1,0 +1,23 @@
+mutation addExpense(
+  $cash_box_id: Int!
+  $amountSpent: numeric!
+  $category: String
+  $employee_id: String
+  $name: String
+  $note: String
+  $date: timestamptz
+) {
+  insert_cash_register_expenses_one(
+    object: {
+      amountSpent: $amountSpent
+      cash_box_id: $cash_box_id
+      category: $category
+      employee_id: $employee_id
+      name: $name
+      note: $note
+      date: $date
+    }
+  ) {
+    id
+  }
+}

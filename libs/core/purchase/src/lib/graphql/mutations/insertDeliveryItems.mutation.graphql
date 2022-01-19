@@ -1,0 +1,21 @@
+mutation InsertDeliveryItems($items: [purchase_delivery_item_insert_input!]!) {
+  insert_purchase_delivery_item(objects: $items) {
+    returning {
+      code
+      cost
+      id
+      delivery_id
+      label
+      quantity
+      substance_id
+      unit
+      warehouse {
+        name
+        id
+        company {
+          name
+        }
+      }
+    }
+  }
+}

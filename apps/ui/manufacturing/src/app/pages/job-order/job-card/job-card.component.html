@@ -1,0 +1,66 @@
+<div fxLayout="row" fxLayoutAlign="end end">
+  <button
+    *ngIf="!(withGeneratedBarCodes$ | async)"
+    mat-flat-button
+    (click)="generateBarCodes()"
+    color="primary"
+    style="width: 10em; margin-right: 8px"
+  >
+    &nbsp;CODEBARES
+  </button>
+
+  <button
+    mat-flat-button
+    (click)="print()"
+    color="primary"
+    style="width: 10em; margin-right: 8px"
+  >
+    <mat-icon> print </mat-icon>
+    &nbsp;IMPRIMER
+  </button>
+</div>
+<ngx-fiche-card [data]="passedData" [withToolbar]="false">
+  <div fxLayout="row wrap">
+    <div *ngFor="let product of products" fxFlex="50">
+      <div fxFlex="100" fxFlex.sm="100" fxFlex.gt-sm="100">
+          <mat-card
+            matRipple
+            appHighlight
+            (toggledEvent)='toggled($event)'
+            toggle='true'
+            (click)="selectProduct(product)"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+          >
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image">
+                  <button
+                    mat-icon-button
+                    matTooltip="view more"
+                  >
+                    <mat-icon class="mat-25">category</mat-icon>
+                  </button>
+                </div>
+                <mat-card-title>{{ product.item | uppercase }}</mat-card-title>
+                <mat-card-subtitle>{{ product.dimensions }}</mat-card-subtitle>
+              </mat-card-header>
+            </div>
+            <app-counter
+              showCircle="true"
+              circleColor="#73D216"
+              animationTime="1"
+              fontSize="48"
+              [from]="0"
+              [to]="product.count"
+              [of]="product.count"
+            >
+              <ng-counter-suffix>Pcs </ng-counter-suffix>
+            </app-counter>
+          </mat-card>
+
+      </div>
+    </div>
+  </div>
+  <ngx-job-progress [data]='data'></ngx-job-progress>
+</ngx-fiche-card>

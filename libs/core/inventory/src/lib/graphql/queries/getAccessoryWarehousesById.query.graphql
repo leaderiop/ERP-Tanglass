@@ -1,0 +1,33 @@
+query GetAccessoryWarehousesById($id: uuid!) {
+  stock_warehouse_substance_aggregate(where: {substance: {id: {_eq: $id}}}) {
+    aggregate {
+      sum {
+        quantity
+      }
+      max {
+        quantity
+      }
+      min {
+        quantity
+      }
+      count
+    
+    }
+    nodes {
+      quantity
+      quantity_min
+      substance {
+        productAccessory {
+          code
+          label
+          price
+          unit
+        }
+      }
+      warehouse {
+        name
+        
+      }
+    }
+  }
+}

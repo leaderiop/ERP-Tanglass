@@ -1,0 +1,5 @@
+mutation DeletePayment($id: uuid !) {
+  delete_sales_payment_by_pk(id: $id) {
+    id
+  }
+}

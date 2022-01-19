@@ -1,0 +1,14 @@
+<ngx-dialog-body title="Supprimer">
+  <div *ngIf="!data.length"><h1> Pas de Services dépendants de cette piéce de verre!</h1></div>
+    <mat-selection-list #products>
+      <mat-list-option *ngFor="let product of data" [value]="product">
+        {{product.label}} :
+        {{product.quantity}}
+        {{product.unit}}
+      </mat-list-option>
+    </mat-selection-list>
+  <div mat-dialog-actions >
+    <button mat-button color="primary" (click)='delete()' [mat-dialog-close]="false"  cdkFocusInitial>Delete</button>
+    <button mat-button color="warn" [mat-dialog-close]="true">Cancel</button>
+  </div>
+</ngx-dialog-body>                   

@@ -1,0 +1,56 @@
+mutation insertServiceDraft(
+  $company_id: uuid, 
+  $company_name: String, 
+  $label: String, 
+  $price: numeric, 
+  $product_code: String, 
+  $total_price: numeric, 
+  $type: sales_product_type_enum, 
+  $unit: String, 
+  $dependent_id: uuid, 
+  $m2: numeric, 
+  $quantity: numeric, 
+  $ml: numeric, 
+  $draft_id: Int, 
+  $labelFactory: String, 
+  $warehouse_id: uuid = null) {
+  insert_sales_service_draft_one(object: {
+    product_draft: {data: {
+      company_id: $company_id, 
+      company_name: $company_name, 
+      label: $label, 
+      price: $price, 
+      product_code: $product_code, 
+      total_price: $total_price, 
+      type: $type, 
+      unit: $unit, 
+      m2: $m2, 
+      quantity: $quantity, 
+      ml: $ml, 
+      draft_id: $draft_id, 
+      warehouse_id: $warehouse_id}}, 
+      dependent_id: $dependent_id, 
+      labelFactory: $labelFactory}) {
+    id
+    dependent_id
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      isRepeated
+      isLaunched
+      width
+      company_id
+      count
+    }
+  }
+}

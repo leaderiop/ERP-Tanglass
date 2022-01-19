@@ -1,0 +1,82 @@
+mutation UpdateStockItemTranfer(
+  $id: uuid!
+  $date: date
+  $quantity: Float
+  $status: String
+  $confirmed: Boolean
+) {
+  update_stock_item_tranfer_by_pk(
+    pk_columns: { id: $id }
+    _set: { date: $date, quantity: $quantity, status: $status, confirmed: $confirmed }
+  ) {
+    tranfer_order_item {
+      transfer_order
+      {
+        id
+        date
+        deadline
+        createdAt
+        createdBy
+        updatedAt
+        updatedBy
+        status
+        fromwarehouse {
+          name
+        }
+        towarehouse {
+          name
+        }
+        order_items_aggregate {
+          aggregate {
+            count(columns: id)
+            sum {
+              quantity
+            }
+          }
+          nodes {
+            quantity
+            status
+            id
+            substance {
+              productAccessory {
+                ...product_product_accessory_viewFragment
+              }
+              productGlass {
+                ...product_product_glass_viewFragment
+              }
+            }
+            item_tranfers_aggregate {
+              aggregate {
+                sum {
+                  quantity
+                }
+              }
+              nodes {
+                quantity
+                status
+                id
+                date
+                confirmed
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment product_product_glass_viewFragment on product_product_glass_view {
+  code
+  label
+  price
+  unit
+}
+
+fragment product_product_accessory_viewFragment on product_product_accessory_view {
+  code
+  label
+  price
+  unit
+}
+

@@ -1,0 +1,6 @@
+query getExpensesCategories {
+  cash_register_expense_category{
+    key
+    value
+  }
+}

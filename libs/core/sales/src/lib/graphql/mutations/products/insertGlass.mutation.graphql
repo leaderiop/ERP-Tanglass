@@ -1,0 +1,69 @@
+mutation insertGlassDraft(
+  $heigth: numeric, 
+  $label: String, 
+  $m2: numeric, 
+  $ml: numeric, 
+  $price: numeric, 
+  $product_code: String, 
+  $quantity: numeric, 
+  $total_price: numeric, 
+  $type: sales_product_type_enum, 
+  $unit: String, 
+  $width: numeric, 
+  $draft_id: Int, 
+  $count: numeric, 
+  $warehouse_id: uuid, 
+  $company_id: uuid, 
+  $company_name: String, 
+  $substance_id: uuid, 
+  $isRepeated: Boolean = false
+  ) {
+  insert_sales_glass_draft_one(object: {
+    product_draft: {
+      data: {
+        heigth: $heigth, 
+        label: $label, 
+        m2: $m2, 
+        ml: $ml, 
+        price: $price, 
+        product_code: $product_code, 
+        quantity: $quantity, 
+        total_price: $total_price, 
+        type: $type, 
+        unit: $unit, 
+        width: $width, 
+        draft_id: $draft_id, 
+        count: $count, 
+        warehouse_id: $warehouse_id, 
+        company_id: $company_id, 
+        company_name: $company_name, 
+        substance_id: $substance_id, 
+        isRepeated: $isRepeated
+        }}}) {
+    product_draft {
+      company_name
+      heigth
+      id
+      label
+      m2
+      ml
+      price
+      product_code
+      quantity
+      total_price
+      type
+      unit
+      width
+      company_id
+      count
+      isRepeated
+      isLaunched
+      substance_id
+      warehouse_id
+      draft_id
+      glass_draft {
+        id
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+mutation TransformQuotationToOrder(
+  $draft_id: Int!, 
+  $copierDraft_id: Int!, 
+  $status: sales_draft_status_enum = commande, 
+  $company_id: uuid, 
+  $customer_id: uuid, 
+  $contact_id: uuid, 
+  $date: date, 
+  $deadline: date, 
+  $salepoint_id: uuid, 
+  $total_ht: numeric, 
+  $total_tax: numeric, 
+  $total_ttc: numeric, 
+  $payment_status: String = "non payé", 
+  $delivery_status: String = "non livré", 
+  $quotationStatus: String = "confirmé",
+  $glasses: [sales_glass_draft_insert_input!]! = []
+  $accessories: [sales_accessory_draft_insert_input!]! = []
+  $consumables: [sales_consumable_draft_insert_input!]! = []
+  ) {
+  update_sales_draft_by_pk(pk_columns: 
+  {id: $copierDraft_id}, _set: {status: $status}) {
+    status
+      product_drafts {
+        id
+        label
+        heigth
+        company_name
+        count
+        delivered
+        warehouse_id
+        substance_id
+        m2
+        ml
+        price
+        product_code
+        quantity
+        status
+        total_price
+        type
+        unit
+        width
+        isRepeated
+        isLaunched
+        draft_id
+        glass_draft {
+          id
+        }
+        consumable_draft {
+          dependent_id
+        }
+        service_draft {
+          dependent_id
+        }
+      }
+    
+  }
+  insert_sales_order_one(object: {
+    company_id: $company_id, 
+    draft_id: $copierDraft_id, 
+    customer_id: $customer_id, 
+    contact_id: $contact_id, 
+    date: $date, 
+    deadline: $deadline, 
+    total_ht: $total_ht, 
+    salepoint_id: $salepoint_id, 
+    total_tax: $total_tax, 
+    total_ttc: $total_ttc, 
+    payment_status: $payment_status, 
+    delivery_status: $delivery_status
+    }) {
+    company {
+      name
+      id
+    }
+    contact {
+      code
+      name
+    }
+    customer {
+      code
+      name
+      phone
+    }
+    salepoint {
+      name
+    }
+    date
+    deadline
+    draft_id
+    id
+    delivery_status
+    payment_status
+    total_ht
+    total_tax
+    total_ttc
+  }
+  update_sales_quotation(where: {
+    draft_id: {_eq: $draft_id}}, _set: {status: $quotationStatus}) {
+    affected_rows
+  }
+  insert_sales_glass_draft(objects: $glasses) {
+    affected_rows
+  }
+  insert_sales_accessory_draft(objects: $accessories) {
+    affected_rows
+  }
+  insert_sales_consumable_draft(objects: $consumables) {
+    affected_rows
+  }
+}
